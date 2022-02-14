@@ -2,7 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CreateSessionTimeoutCookie;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Session\Middleware\StartSession;
 
 class Kernel extends HttpKernel
 {
@@ -21,6 +23,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        StartSession::class, // ! 세션 활성화
     ];
 
     /**
@@ -43,7 +46,8 @@ class Kernel extends HttpKernel
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        ],
+            CreateSessionTimeoutCookie::class // 커스텀 쿠키 추가
+        ]
     ];
 
     /**
