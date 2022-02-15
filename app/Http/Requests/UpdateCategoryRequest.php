@@ -13,7 +13,7 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'category_id' => 'required',
+            'startDate' => 'required',
+            'endDate' => 'required',
+            'title' => 'required',
+            'poster' => 'required',
+            'desc' => 'required|min:3',
+            'artist' => 'required',
+            'price' => 'required',
+            'openDate' => 'required',
+            'closeDate' => 'required',
+            'playTime' => 'required',
+            'reEndDate' => 'required',
         ];
     }
 }
