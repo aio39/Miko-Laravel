@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\TwitterController;
@@ -26,6 +27,13 @@ Route::get('/login/twitter', [TwitterController::class, 'redirect'])->name('twit
 Route::get('/login/twitter/callback', [TwitterController::class, 'callback']);
 
 
+Route::apiResource('/concerts', \App\Http\Controllers\ConcertController::class);
+Route::apiResource('/tickets', \App\Http\Controllers\TicketController::class);
+
+Route::apiResource('/chats', \App\Http\Controllers\ChatController::class);
+Route::apiResource('/coin',\App\Http\Controllers\CoinHistoryController::class);
+
+
 Route::post('/user',function(Request $request){
     $data = $request->all();
     $data['password'] = \Hash::make($request->password);
@@ -38,6 +46,5 @@ Route::post('/user',function(Request $request){
 
 
 Route::get('/user',function(Request $request){
-    dd( $request->session()->all());
-    return response()->json(\Illuminate\Support\Facades\Auth::user());
+    return  Auth::check() ? response()->json(Auth::user()) : response()->json('please login',404);
 });
