@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\Cookie;
 class LoginController extends Controller
 {
 
+
+    protected function setUserSession($user)
+    {
+        session(
+            [
+                'id' => $user->id,
+                "email" => $user->email,
+                "name" => $user->name
+            ]
+        );
+    }
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -22,6 +33,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            $this->setUserSession(Auth::user());
             return  response()->json(Auth::user());
         }
 

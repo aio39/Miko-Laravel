@@ -35,3 +35,9 @@ Route::post('/user',function(Request $request){
         ? response()->json($user,201)
         : response()->json([],500);
 });
+
+
+Route::get('/user',function(Request $request){
+    dd( $request->session()->all());
+    return response()->json(\Illuminate\Support\Facades\Auth::user());
+});
