@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCategoryRequest extends FormRequest
+class StoreTicketRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,16 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
+            'concert_id' => 'required',
+
+            'price' => 'required',
+            'running_time' => 'required',
+
+            'sale_start_date' => 'required',
+            'sale_end_date' => 'required',
+            'concert_start_date' => 'required',
+            'concert_end_date' => 'required',
+            'archive_end_time' => 'required',
 
         ];
     }
