@@ -37,7 +37,7 @@ class Ticket extends Model
 
     public function userTickets()
     {
-        return $this->belongsToMany('App\Models\User', 'user_tickets', 'ticket_id', 'user_id')
+        return $this->belongsToMany('App\Models\User', 'user_ticket', 'ticket_id', 'user_id')
             ->using('App\Models\UserTicket')
             ->withPivot('created_at',
                 'updated_at',

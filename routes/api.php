@@ -29,9 +29,10 @@ Route::get('/login/twitter/callback', [TwitterController::class, 'callback']);
 
 Route::apiResource('/concerts', \App\Http\Controllers\ConcertController::class);
 Route::apiResource('/tickets', \App\Http\Controllers\TicketController::class);
+Route::apiResource('/user_tickets', \App\Http\Controllers\UserTicketController::class);
 
 Route::apiResource('/chats', \App\Http\Controllers\ChatController::class);
-Route::apiResource('/coin',\App\Http\Controllers\CoinHistoryController::class);
+Route::apiResource('/coin_histories',\App\Http\Controllers\CoinHistoryController::class);
 
 
 Route::post('/user',function(Request $request){

@@ -17,8 +17,8 @@ class CreateChatsTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->integer('user_id')->unsigned()->index();
-            $table->integer('ticket_id')->unsigned()->index();
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->bigInteger('ticket_id')->unsigned()->index();
 
             $table->string('text')->nullable();
         });

@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->rememberToken();
-            $table->unsignedBigInteger('coin')->default(0);
+            $table->unsignedBigInteger('coin')->default(0);  // 마이너스 값은 없음.
             $table->tinyInteger('type')->default(1); // 0 어드민 // 1 일반 // 2 스트리머
 
             $table->string('google_id')->nullable();

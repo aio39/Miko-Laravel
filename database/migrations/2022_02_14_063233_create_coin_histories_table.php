@@ -17,11 +17,11 @@ class CreateCoinHistoriesTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->integer('user_id')->unsigned()->index();
-            $table->integer('concert_id')->unsigned()->index()->nullable();
-            $table->integer('chat_id')->unsigned()->index()->nullable();
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->bigInteger('ticket_id')->unsigned()->index()->nullable();
+            $table->bigInteger('chat_id')->unsigned()->index()->nullable();
 
-            $table->tinyInteger('type')->default(0); // 0  충전  / 1 슈퍼챗 / 2 굿즈 구입 / 3 아이템
+            $table->tinyInteger('type')->default(0); // 0  충전  / 1 티켓 구입 /  2 슈퍼챗 /  3 아이템  사용 / 4 굿즈 구입
 
             $table->integer('variation');
         });

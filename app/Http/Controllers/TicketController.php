@@ -21,11 +21,6 @@ class TicketController extends Controller
         $query = Ticket::query();
         $query = applyDefaultFSW($request, $query);
 
-        $q = $request->get('search');   // 검색
-        // Fulltext * 부분 제외 -  " " 로 묶으면 단어 합치기
-        if ($q) {
-            $query->whereRaw("MATCH(title, content) AGAINST(? IN BOOLEAN MODE)", $q);
-        }
 
         return $query->paginate($request->get('per_page') ?: 40);
     }
