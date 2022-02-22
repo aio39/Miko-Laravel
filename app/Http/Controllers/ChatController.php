@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreChatRequest;
 use App\Http\Requests\UpdateChatRequest;
+use App\Http\Resources\ChatCollection;
+use App\Http\Resources\ChatResource;
 use App\Models\Chat;
+use Illuminate\Http\Request;
+use function App\Helper\applyDefaultFSW;
 
 class ChatController extends Controller
 {
@@ -13,20 +17,14 @@ class ChatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query = Chat::query();
+        $query = applyDefaultFSW($request, $query);
+
+        return new ChatCollection($query->paginate($request->get('per_page') ?: 40));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -36,7 +34,12 @@ class ChatController extends Controller
      */
     public function store(StoreChatRequest $request)
     {
-        //
+        $input = $request->all();
+        $chat = Chat::create($input);
+
+        return (new ChatResource($chat))->response();
+
+
     }
 
     /**
@@ -47,19 +50,9 @@ class ChatController extends Controller
      */
     public function show(Chat $chat)
     {
-        //
+        return (new ChatResource($chat))->response();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Chat  $chat
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Chat $chat)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -81,6 +74,8 @@ class ChatController extends Controller
      */
     public function destroy(Chat $chat)
     {
-        //
+        $chat->deleteOrFail();
+
+        return response(["msg"=>'sucess to delete chat, id:'.$chat->id]);
     }
 }
