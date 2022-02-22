@@ -68,7 +68,6 @@ class ConcertController extends Controller
         $concert = Concert::create($input);
 
         return (new ConcertResource($concert))->response();
-//        return      response()->json($concert, 201);
     }
 
     /**

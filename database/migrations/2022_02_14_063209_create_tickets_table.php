@@ -19,8 +19,8 @@ class CreateTicketsTable extends Migration
 
             $table->foreignId('concert_id')->constrained();
 
-            $table->bigInteger('price');
-            $table->string('running_time');
+            $table->unsignedInteger('price');
+            $table->unsignedSmallInteger('running_time');
 
             $table->timestampTz('sale_start_date');
             $table->timestampTz('sale_end_date');

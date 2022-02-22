@@ -34,6 +34,7 @@ Route::apiResource('/user_tickets', \App\Http\Controllers\UserTicketController::
 
 Route::apiResource('/chats', \App\Http\Controllers\ChatController::class);
 Route::apiResource('/coin_histories',\App\Http\Controllers\CoinHistoryController::class);
+Route::apiResource('/products',\App\Http\Controllers\ProductController::class);
 
 
 Route::post('/users',function(Request $request){
