@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreConcertRequest;
 use App\Http\Requests\UpdateConcertRequest;
+use App\Http\Resources\ConcertCollection;
+use App\Http\Resources\ConcertResource;
 use App\Models\Concert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -35,13 +37,14 @@ class ConcertController extends Controller
             $query->whereRaw("MATCH(title, content) AGAINST(? IN BOOLEAN MODE)", $q);
         }
 
-        return $query->paginate($request->get('per_page') ?: 40);
+        return new ConcertCollection($query->paginate($request->get('per_page') ?: 40));
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreConcertRequest $request)
@@ -64,25 +67,26 @@ class ConcertController extends Controller
 
         $concert = Concert::create($input);
 
-        return response()->json($concert, 201);
+        return (new ConcertResource($concert))->response();
+//        return      response()->json($concert, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Concert $concert)
     {
-        return response()->json($concert);
+        return (new ConcertResource($concert))->response();
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateConcertRequest $request, Concert $concert)
@@ -97,7 +101,7 @@ class ConcertController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Concert $concert)

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
+use App\Http\Resources\ConcertResource;
+use App\Http\Resources\TicketCollection;
+use App\Http\Resources\TicketResource;
 use App\Models\Concert;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
@@ -21,16 +24,14 @@ class TicketController extends Controller
         $query = Ticket::query();
         $query = applyDefaultFSW($request, $query);
 
-
-        return $query->paginate($request->get('per_page') ?: 40);
+        return new TicketCollection($query->paginate($request->get('per_page') ?: 40));
     }
-
 
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTicketRequest  $request
+     * @param \App\Http\Requests\StoreTicketRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreTicketRequest $request)
@@ -41,28 +42,27 @@ class TicketController extends Controller
 
         $ticket = $concert->tickets()->create($request->all());
 
-        return  response()->json($ticket,201);
+        return (new TicketResource($ticket))->response();
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ticket  $ticket
+     * @param \App\Models\Ticket $ticket
      * @return \Illuminate\Http\Response
      */
     public function show(Ticket $ticket)
     {
-        return response()->json($ticket);
+        return (new TicketResource($ticket))->response();
     }
-
 
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTicketRequest  $request
-     * @param  \App\Models\Ticket  $ticket
+     * @param \App\Http\Requests\UpdateTicketRequest $request
+     * @param \App\Models\Ticket $ticket
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateTicketRequest $request, Ticket $ticket)
@@ -73,7 +73,7 @@ class TicketController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ticket  $ticket
+     * @param \App\Models\Ticket $ticket
      * @return \Illuminate\Http\Response
      */
     public function destroy(Ticket $ticket)

@@ -6,6 +6,8 @@ use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\StoreUserTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
 use App\Http\Requests\UpdateUserTicketRequest;
+use App\Http\Resources\UserTicketCollection;
+use App\Http\Resources\UserTicketResource;
 use App\Models\CoinHistory;
 use App\Models\Concert;
 use App\Models\Ticket;
@@ -28,7 +30,7 @@ class UserTicketController extends Controller
         $query = UserTicket::query();
         $query = applyDefaultFSW($request, $query);
 
-        return $query->paginate($request->get('per_page') ?: 40);
+        return new UserTicketCollection($query->paginate($request->get('per_page') ?: 40));
     }
 
 
@@ -72,7 +74,7 @@ class UserTicketController extends Controller
             throw  $e;
         }
 
-        return  response()->json($user_ticket,201);
+        return (new UserTicketResource($user_ticket));
 
     }
 
@@ -84,7 +86,7 @@ class UserTicketController extends Controller
      */
     public function show(UserTicket $user_ticket)
     {
-        return response()->json($user_ticket);
+        return (new UserTicketResource($user_ticket));
     }
 
 
