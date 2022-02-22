@@ -29,6 +29,7 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => false,
+    // NOTE CORS 허용
+    'supports_credentials' => true,
 
 ];

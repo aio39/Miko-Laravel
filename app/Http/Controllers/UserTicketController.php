@@ -72,7 +72,6 @@ class UserTicketController extends Controller
             throw  $e;
         }
 
-
         return  response()->json($user_ticket,201);
 
     }
@@ -80,12 +79,12 @@ class UserTicketController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ticket  $ticket
+     * @param  \App\Models\Ticket  $user_ticket
      * @return \Illuminate\Http\Response
      */
-    public function show(Ticket $ticket)
+    public function show(UserTicket $user_ticket)
     {
-        return response()->json($ticket);
+        return response()->json($user_ticket);
     }
 
 

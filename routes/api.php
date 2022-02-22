@@ -21,6 +21,7 @@ Route::get('/logout',[LoginController::class,'logout']);
 // socialite google login
 Route::get('/login/google', [GoogleController::class, 'redirect'])->name('google.login');
 Route::get('/login/google/callback', [GoogleController::class, 'callback']);
+Route::post('/login/google/login', [GoogleController::class, 'login']);
 
 // socialite twitter login
 Route::get('/login/twitter', [TwitterController::class, 'redirect'])->name('twitter.login');
@@ -35,7 +36,7 @@ Route::apiResource('/chats', \App\Http\Controllers\ChatController::class);
 Route::apiResource('/coin_histories',\App\Http\Controllers\CoinHistoryController::class);
 
 
-Route::post('/user',function(Request $request){
+Route::post('/users',function(Request $request){
     $data = $request->all();
     $data['password'] = \Hash::make($request->password);
     $user = User::create($data);
@@ -46,6 +47,6 @@ Route::post('/user',function(Request $request){
 });
 
 
-Route::get('/user',function(Request $request){
+Route::get('/users',function(Request $request){
     return  Auth::check() ? response()->json(Auth::user()) : response()->json('please login',404);
 });

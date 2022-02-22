@@ -20,7 +20,7 @@ class CreateSessionTimeoutCookie
     {
         $res =  $next($request);
         if(Auth::check()){
-            $res->cookie('isLogin',"", config('SESSION_LIFETIME') ?? 120, null,null,false,false);
+            $res->cookie('isLogin',true, config('SESSION_LIFETIME'), null,null,false,false);
         }
         return $res;
     }

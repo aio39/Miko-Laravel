@@ -56,7 +56,7 @@ class TwitterController extends Controller
             //로그인 처리
             Auth::login($newUser);
 
-            return redirect('/');
+            return redirect(env('LOGIN_PAGE'));
         }
     }
 }
