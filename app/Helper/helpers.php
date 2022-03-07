@@ -71,3 +71,32 @@ if (! function_exists('applyDefaultFSW')) {
 
 }
 
+
+
+//if (! function_exists('camelToSnake')) {
+//    function camelToSanke($input ,$capitalizeFirstCharacter = false ){
+//        $str = str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
+//
+//        if (!$capitalizeFirstCharacter) {
+//            $str[0] = strtolower($str[0]);
+//        }
+//
+//        return $str;
+//    }
+//
+//}
+//
+//if (! function_exists('snakeToCamel')) {
+//    function snakeToCamel($input ){
+//        $pattern = '!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!';
+//        preg_match_all($pattern, $input, $matches);
+//        $ret = $matches[0];
+//        foreach ($ret as &$match) {
+//            $match = $match == strtoupper($match) ?
+//                strtolower($match) :
+//                lcfirst($match);
+//        }
+//        return implode('_', $ret);
+//    }
+//
+//}

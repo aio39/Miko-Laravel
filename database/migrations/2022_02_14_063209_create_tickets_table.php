@@ -17,7 +17,7 @@ class CreateTicketsTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->foreignId('concert_id')->constrained();
+            $table->unsignedBigInteger('concert_id')->index();
 
             $table->unsignedInteger('price');
             $table->unsignedSmallInteger('running_time');

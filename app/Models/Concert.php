@@ -9,6 +9,8 @@ class Concert extends Model
 {
     use HasFactory;
 
+    public static $snakeAttributes = false;
+
     protected $guarded = [];
 
     protected $casts = [
@@ -16,7 +18,7 @@ class Concert extends Model
         'all_concert_end_date' => 'datetime'
     ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -32,8 +34,4 @@ class Concert extends Model
         return $this->hasMany(Ticket::class);
     }
 
-    public function userTickets()
-    {
-        return $this->hasMany(UserTicket::class);
-    }
 }
