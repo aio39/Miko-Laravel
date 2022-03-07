@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\ConvertToSnail;
 use App\Http\Middleware\CreateSessionTimeoutCookie;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Session\Middleware\StartSession;
@@ -46,7 +47,8 @@ class Kernel extends HttpKernel
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            CreateSessionTimeoutCookie::class // 커스텀 쿠키 추가
+            CreateSessionTimeoutCookie::class, // 커스텀 쿠키 추가,
+            ConvertToSnail::class
         ]
     ];
 

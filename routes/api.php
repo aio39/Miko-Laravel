@@ -38,6 +38,8 @@ Route::apiResource('/products',\App\Http\Controllers\ProductController::class);
 
 
 Route::post('/users',function(Request $request){
+    return $request->all();
+
     $data = $request->all();
     $data['password'] = \Hash::make($request->password);
     $user = User::create($data);
