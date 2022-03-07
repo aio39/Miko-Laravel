@@ -18,7 +18,8 @@ class CreateUserTicketTable extends Migration
             $table->timestamps();
 
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('ticket_id')->constrained()->onDelete('cascade');
+            $table->bigInteger('ticket_id')->index();
+            $table->bigInteger('concert_id')->index();
 
             $table->boolean('is_used')->default(false);
             $table->bigInteger('p_ranking')->nullable();

@@ -26,9 +26,8 @@ class CoinHistory extends Model
         return $this->belongsTo(Chat::class);
     }
 
-    public function userTicket()
-    {
-        return $this->belongsTo(UserTicket::class);
-    }
-
+//    public function userTicket()
+//    {
+//        return $this->belongsTo(UserTicket::class);
+//    }
 }

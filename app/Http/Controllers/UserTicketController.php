@@ -55,13 +55,13 @@ class UserTicketController extends Controller
 
         // 코인이 부족하면 실패
         if($user-> coin < $ticket->price) {
-            return response()->json("fail",401);
+            return response()->json("코인 부족",401);
         }
 
         DB::beginTransaction();
 
         try {
-            $user_ticket = UserTicket::create(["user_id" => $user_id, "ticket_id" => $ticket->id]);
+            $user_ticket = UserTicket::create(["user_id" => $user_id, "ticket_id" => $ticket->id,"concert_id"=> $ticket->concert_id]);
 
             User::query()->where('id', Auth::id())->decrement('coin', $ticket->price);
 
