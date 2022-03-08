@@ -34,7 +34,7 @@ class ConcertController extends Controller
         $q = $request->get('search');   // 검색
         // Fulltext * 부분 제외 -  " " 로 묶으면 단어 합치기
         if ($q) {
-            $query->whereRaw("MATCH(title, content) AGAINST(? IN BOOLEAN MODE)", $q);
+            $query->whereRaw("MATCH(title, artist) AGAINST(? IN BOOLEAN MODE)", $q);
         }
 
         return new ConcertCollection($query->paginate($request->get('per_page') ?: 40));
