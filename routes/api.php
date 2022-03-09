@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\TwitterController;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 Route::get('/test',function (){ return 'Hello World';});
 
@@ -40,6 +41,7 @@ Route::apiResource('/products',\App\Http\Controllers\ProductController::class);
 Route::post('/users',function(Request $request){
     $data = $request->all();
     $data['password'] = \Hash::make($request->password);
+    $data['uuid'] = Str::orderedUuid();
     $user = User::create($data);
 
     return $user

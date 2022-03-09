@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 
 class UserSeeder extends Seeder
@@ -21,6 +22,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@example.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
+            'uuid'=> Str::orderedUuid(),
             'created_at' => now(),
             'updated_at' => now(),
         ], [
@@ -28,6 +30,7 @@ class UserSeeder extends Seeder
             'email' => 'miku@example.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
+            'uuid'=> Str::orderedUuid(),
             'created_at' => now(),
             'updated_at' => now(),
         ], [
@@ -35,6 +38,7 @@ class UserSeeder extends Seeder
             'email' => 'rin@example.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
+            'uuid'=> Str::orderedUuid(),
             'created_at' => now(),
             'updated_at' => now(),
         ],[
@@ -42,6 +46,7 @@ class UserSeeder extends Seeder
             'email' => 'abc1@abc.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
+            'uuid'=> Str::orderedUuid(),
             'created_at' => now(),
             'updated_at' => now(),
         ],[
@@ -49,6 +54,7 @@ class UserSeeder extends Seeder
             'email' => 'abc2@abc.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
+            'uuid'=> Str::orderedUuid(),
             'created_at' => now(),
             'updated_at' => now(),
         ],[
@@ -56,6 +62,7 @@ class UserSeeder extends Seeder
             'email' => 'abc3@abc.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
+            'uuid'=> Str::orderedUuid(),
             'created_at' => now(),
             'updated_at' => now(),
         ],[
@@ -63,6 +70,7 @@ class UserSeeder extends Seeder
             'email' => 'abc4@abc.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
+            'uuid'=> Str::orderedUuid(),
             'created_at' => now(),
             'updated_at' => now(),
         ]]);
