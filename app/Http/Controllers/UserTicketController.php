@@ -16,6 +16,7 @@ use App\Models\UserTicket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function App\Helper\applyDefaultFindById;
 use function App\Helper\applyDefaultFSW;
 
 class UserTicketController extends Controller
@@ -84,9 +85,14 @@ class UserTicketController extends Controller
      * @param  \App\Models\Ticket  $user_ticket
      * @return \Illuminate\Http\Response
      */
-    public function show(UserTicket $user_ticket)
+    public function show(Request $request, $id)
     {
-        return (new UserTicketResource($user_ticket));
+
+        $query = UserTicket::query();
+
+        $query = applyDefaultFindById($request, $query);
+
+        return (new UserTicketResource($query->findOrFail($id)));
     }
 
 

@@ -10,6 +10,7 @@ use App\Http\Resources\TicketResource;
 use App\Models\Concert;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use function App\Helper\applyDefaultFindById;
 use function App\Helper\applyDefaultFSW;
 
 class TicketController extends Controller
@@ -52,11 +53,15 @@ class TicketController extends Controller
      * @param \App\Models\Ticket $ticket
      * @return \Illuminate\Http\Response
      */
-    public function show(Ticket $ticket)
+    public function show(Request $request, $id)
     {
-        return (new TicketResource($ticket))->response();
-    }
 
+        $query = Ticket::query();
+
+        $query = applyDefaultFindById($request, $query);
+
+        return (new TicketResource($query->findOrFail($id)));
+    }
 
     /**
      * Update the specified resource in storage.

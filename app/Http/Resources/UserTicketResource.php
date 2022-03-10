@@ -20,6 +20,8 @@ class UserTicketResource extends JsonResource
             "user" =>  new UserResource($this->whenLoaded('user')),
             "ticketId" => $this->ticket_id,
             "ticket" =>  new TicketResource($this->whenLoaded('ticket')),
+            "concertId" => $this->concert_id,
+            "concert" =>  new TicketResource($this->whenLoaded('concert')),
             "isUsed" => $this->is_used,
             "pRanking" => $this->p_ranking,
             "gRanking" => $this->g_ranking,

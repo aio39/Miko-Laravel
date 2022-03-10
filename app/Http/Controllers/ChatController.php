@@ -8,6 +8,7 @@ use App\Http\Resources\ChatCollection;
 use App\Http\Resources\ChatResource;
 use App\Models\Chat;
 use Illuminate\Http\Request;
+use function App\Helper\applyDefaultFindById;
 use function App\Helper\applyDefaultFSW;
 
 class ChatController extends Controller
@@ -48,9 +49,13 @@ class ChatController extends Controller
      * @param  \App\Models\Chat  $chat
      * @return \Illuminate\Http\Response
      */
-    public function show(Chat $chat)
+    public function show(Request $request, $id)
     {
-        return (new ChatResource($chat))->response();
+        $query = Chat::query();
+
+        $query = applyDefaultFindById($request, $query);
+
+        return (new ChatResource($query->findOrFail($id)));
     }
 
 

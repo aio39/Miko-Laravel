@@ -12,6 +12,7 @@ use App\Models\UserTicket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function App\Helper\applyDefaultFindById;
 use function App\Helper\applyDefaultFSW;
 
 class CoinHistoryController extends Controller
@@ -63,9 +64,14 @@ class CoinHistoryController extends Controller
      * @param \App\Models\CoinHistory $coinHistory
      * @return \Illuminate\Http\Response
      */
-    public function show(CoinHistory $coinHistory)
+    public function show(Request $request, $id)
     {
-        return (new CoinHistoryResource($coinHistory))->response();
+
+        $query = CoinHistory::query();
+
+        $query = applyDefaultFindById($request, $query);
+
+        return (new CoinHistoryResource($query->findOrFail($id)));
     }
 
 

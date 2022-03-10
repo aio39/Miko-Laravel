@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
+use function App\Helper\applyDefaultFindById;
 use function App\Helper\applyDefaultFSW;
 
 class ConcertController extends Controller
@@ -76,11 +77,15 @@ class ConcertController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Concert $concert)
+    public function show(Request $request, $id)
     {
-        return (new ConcertResource($concert))->response();
-    }
 
+        $query = Concert::query();
+
+        $query = applyDefaultFindById($request, $query);
+
+        return (new ConcertResource($query->findOrFail($id)));
+    }
     /**
      * Update the specified resource in storage.
      *
