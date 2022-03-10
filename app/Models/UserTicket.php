@@ -21,6 +21,6 @@ class UserTicket extends Pivot
 
     public function concert()
     {
-        return $this->belongsTo(Ticket::class);
+        return $this->belongsTo(Concert::class);
     }
 }
