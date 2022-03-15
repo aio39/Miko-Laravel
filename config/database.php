@@ -43,8 +43,8 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
-        'nginx' => [
-            'driver' => 'nginx',
+        'mysql' => [
+            'driver' => 'mysql',
             'url' => array_key_exists('DATABASE_URL', $_SERVER) ? $_SERVER['DATABASE_URL'] : env('DATABASE_URL'),
             'host' => array_key_exists('DB_HOST', $_SERVER) ? $_SERVER['DB_HOST'] : env('DB_HOST', "127.0.0.1"),
             'port' => array_key_exists('DB_PORT', $_SERVER) ? $_SERVER['DB_PORT'] : env('DB_PORT', "3306"),
@@ -142,21 +142,21 @@ return [
             'database' => env('REDIS_CACHE_DB', '1'),
         ],
 
-//        'default' => [
-//            'url' =>array_key_exists('REDIS_URL', $_SERVER) ? $_SERVER['REDIS_URL'] :env('REDIS_URL'),
-//            'host' =>array_key_exists('REDIS_HOST', $_SERVER) ? $_SERVER['REDIS_HOST'] :env('REDIS_HOST','127.0.0.1'),
-//            'password' =>array_key_exists('REDIS_PASSWORD', $_SERVER) ? $_SERVER['REDIS_PASSWORD'] :env('REDIS_PASSWORD'),
-//            'port' =>array_key_exists('REDIS_PORT', $_SERVER) ? $_SERVER['REDIS_PORT'] :env('REDIS_PORT'),
-//            'database' =>array_key_exists('REDIS_DB', $_SERVER) ? $_SERVER['REDIS_DB'] :env('REDIS_DB'),
-//        ],
-//
-//        'cache' => [
-//            'url' =>array_key_exists('REDIS_URL', $_SERVER) ? $_SERVER['REDIS_URL'] :env('REDIS_URL'),
-//            'host' =>array_key_exists('REDIS_HOST', $_SERVER) ? $_SERVER['REDIS_HOST'] :env('REDIS_HOST','127.0.0.1'),
-//            'password' =>array_key_exists('REDIS_PASSWORD', $_SERVER) ? $_SERVER['REDIS_PASSWORD'] :env('REDIS_PASSWORD'),
-//            'port' =>array_key_exists('REDIS_PORT', $_SERVER) ? $_SERVER['REDIS_PORT'] :env('REDIS_PORT'),
-//            'database' =>array_key_exists('REDIS_DB', $_SERVER) ? $_SERVER['REDIS_DB'] :env('REDIS_DB'),
-//        ],
+        'default' => [
+            'url' =>array_key_exists('REDIS_URL', $_SERVER) ? $_SERVER['REDIS_URL'] :env('REDIS_URL'),
+            'host' =>array_key_exists('REDIS_HOST', $_SERVER) ? $_SERVER['REDIS_HOST'] :env('REDIS_HOST','127.0.0.1'),
+            'password' =>array_key_exists('REDIS_PASSWORD', $_SERVER) ? $_SERVER['REDIS_PASSWORD'] :env('REDIS_PASSWORD'),
+            'port' =>array_key_exists('REDIS_PORT', $_SERVER) ? $_SERVER['REDIS_PORT'] :env('REDIS_PORT'),
+            'database' =>array_key_exists('REDIS_DB', $_SERVER) ? $_SERVER['REDIS_DB'] :env('REDIS_DB'),
+        ],
+
+        'cache' => [
+            'url' =>array_key_exists('REDIS_URL', $_SERVER) ? $_SERVER['REDIS_URL'] :env('REDIS_URL'),
+            'host' =>array_key_exists('REDIS_HOST', $_SERVER) ? $_SERVER['REDIS_HOST'] :env('REDIS_HOST','127.0.0.1'),
+            'password' =>array_key_exists('REDIS_PASSWORD', $_SERVER) ? $_SERVER['REDIS_PASSWORD'] :env('REDIS_PASSWORD'),
+            'port' =>array_key_exists('REDIS_PORT', $_SERVER) ? $_SERVER['REDIS_PORT'] :env('REDIS_PORT'),
+            'database' =>array_key_exists('REDIS_DB', $_SERVER) ? $_SERVER['REDIS_DB'] :env('REDIS_DB'),
+        ],
 
     ],
 
