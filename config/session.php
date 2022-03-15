@@ -18,20 +18,22 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'file'),
+    'driver' => array_key_exists('SESSION_DRIVER', $_SERVER) ? $_SERVER['SESSION_DRIVER'] :env('SESSION_DRIVER', 'file'),
 
-    /*
-    |--------------------------------------------------------------------------
-    | Session Lifetime
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify the number of minutes that you wish the session
-    | to be allowed to remain idle before it expires. If you want them
-    | to immediately expire on the browser closing, set that option.
-    |
-    */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
+        /*
+        |--------------------------------------------------------------------------
+        | Session Lifetime
+        |--------------------------------------------------------------------------
+        |
+        | Here you may specify the number of minutes that you wish the session
+        | to be allowed to remain idle before it expires. If you want them
+        | to immediately expire on the browser closing, set that option.
+        |
+        */
+
+    'lifetime' => array_key_exists('SESSION_LIFETIME', $_SERVER) ? $_SERVER['SESSION_LIFETIME'] :env('SESSION_LIFETIME', 120),
+
 
     'expire_on_close' => false,
 
@@ -100,7 +102,7 @@ return [
     |
     */
 
-    'store' => env('SESSION_STORE'),
+    'store' => array_key_exists('SESSION_STORE', $_SERVER) ? $_SERVER['SESSION_STORE'] :env('SESSION_STORE'),
 
     /*
     |--------------------------------------------------------------------------

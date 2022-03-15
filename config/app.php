@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => array_key_exists('APP_NAME', $_SERVER) ? $_SERVER['APP_NAME'] : env('APP_NAME', "Laravel"),
 
     /*
     |--------------------------------------------------------------------------
@@ -28,8 +28,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
-
+    'env' => array_key_exists('APP_ENV', $_SERVER) ? $_SERVER['APP_ENV'] : env('APP_ENV', "production"),
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
@@ -41,7 +40,8 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => array_key_exists('APP_URL', $_SERVER) ? $_SERVER['APP_URL'] : env('APP_URL', "http://localhost"),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -69,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Seoul',
 
     /*
     |--------------------------------------------------------------------------
@@ -121,7 +121,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => array_key_exists('APP_KEY', $_SERVER) ? $_SERVER['APP_KEY'] : env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 

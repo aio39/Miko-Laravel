@@ -23,7 +23,7 @@ class GoogleController extends Controller
     {
 
         $token = Socialite::driver(static::DRIVER_TYPE)->stateless()->user()->token;
-        return redirect(env('LOGIN_PAGE').'?token='.$token);
+        return redirect((array_key_exists('LOGIN_PAGE', $_SERVER) ? $_SERVER['LOGIN_PAGE'] :env('LOGIN_PAGE')).'?token='.$token);
 
     }
 

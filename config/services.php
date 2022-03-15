@@ -31,15 +31,15 @@ return [
     ],
 
     'google' => [
-        'client_id' => env('GOOGLE_CLIENT_ID'),
-        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('GOOGLE_REDIRECT_URI')
+        'client_id' => array_key_exists('GOOGLE_CLIENT_ID', $_SERVER) ? $_SERVER['GOOGLE_CLIENT_ID'] : env('GOOGLE_CLIENT_ID'),
+        'redirect' => array_key_exists('GOOGLE_CLIENT_SECRET', $_SERVER) ? $_SERVER['GOOGLE_CLIENT_SECRET'] : env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => array_key_exists('GOOGLE_REDIRECT_URI', $_SERVER) ? $_SERVER['GOOGLE_REDIRECT_URI'] : env('GOOGLE_REDIRECT_URI'),
     ],
 
     'twitter' => [
-        'client_id' => env('TWITTER_CLIENT_ID'),
-        'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => env('TWITTER_REDIRECT_URI')
+        'client_id' => array_key_exists('TWITTER_CLIENT_ID', $_SERVER) ? $_SERVER['TWITTER_CLIENT_ID'] : env('TWITTER_CLIENT_ID'),
+        'client_secret' => array_key_exists('TWITTER_CLIENT_SECRET', $_SERVER) ? $_SERVER['TWITTER_CLIENT_SECRET'] : env('TWITTER_CLIENT_SECRET'),
+        'redirect' => array_key_exists('TWITTER_REDIRECT_URI', $_SERVER) ? $_SERVER['TWITTER_REDIRECT_URI'] : env('TWITTER_REDIRECT_URI'),
     ],
 
 ];
