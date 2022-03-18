@@ -39,13 +39,14 @@ Route::apiResource('/products',\App\Http\Controllers\ProductController::class);
 
 
 Route::post('/users',function(Request $request){
+
     $data = $request->all();
     $data['password'] = \Hash::make($request->password);
     $data['uuid'] = Str::orderedUuid();
     $user = User::create($data);
 
     return $user
-        ? response()->json($user,201)
+        ? response()->json($data,201)
         : response()->json([],500);
 });
 

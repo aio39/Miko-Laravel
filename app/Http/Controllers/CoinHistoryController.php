@@ -48,7 +48,6 @@ class CoinHistoryController extends Controller
 
             User::query()->where('id', Auth::id())->decrement('coin', $request->variation);
             $coinHistory = CoinHistory::create($input);
-
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();

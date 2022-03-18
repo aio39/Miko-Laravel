@@ -24,7 +24,6 @@ class CreateUserTicketTable extends Migration
             $table->boolean('is_used')->default(false);
             $table->bigInteger('p_ranking')->nullable();
             $table->bigInteger('g_ranking')->nullable();
-
         });
     }
 

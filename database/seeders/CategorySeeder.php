@@ -15,32 +15,37 @@ class CategorySeeder extends Seeder
     public function run()
     {
          // 상위 카테고리
-        DB::table('categories')->insert([
+        \DB::table('categories')->insert([
             [
+                'name'=> 'J-POP',
+                'created_at'=> now(),
+                'updated_at'=> now(),
+            ],[
+                'name'=> 'K-POP',
+                'created_at'=> now(),
+                'updated_at'=> now(),
+            ],[
+                'name'=> '애니메이션',
+                'created_at'=> now(),
+                'updated_at'=> now(),
+            ],[
+                'name'=> '재즈/소울',
+                'created_at'=> now(),
+                'updated_at'=> now(),
+            ],[
+                'name'=> '밴드',
+                'created_at'=> now(),
+                'updated_at'=> now(),
+            ],[
+                'name'=> '발라드',
+                'created_at'=> now(),
+                'updated_at'=> now(),
+            ],[
                 'name'=> '음악',
                 'created_at'=> now(),
                 'updated_at'=> now(),
             ],[
                 'name'=> '연극',
-                'created_at'=> now(),
-                'updated_at'=> now(),
-            ]
-        ]);
-
-       $music_id =  DB::table('categories')->where('name','음악')->first()->id;
-
-       info('category music id : '.$music_id);
-
-        // 하위 카테고리
-        DB::table('categories')->insert([
-            [
-                'name'=> 'J-POP',
-                'parent_id'=> $music_id,
-                'created_at'=> now(),
-                'updated_at'=> now(),
-            ],[
-                'name'=> 'K-POP',
-                'parent_id'=> $music_id,
                 'created_at'=> now(),
                 'updated_at'=> now(),
             ]

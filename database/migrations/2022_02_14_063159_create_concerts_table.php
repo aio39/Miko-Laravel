@@ -35,6 +35,7 @@ class CreateConcertsTable extends Migration
             $table->string('playback_url');
             $table->string('stream_key_arn');
             $table->string('stream_key_value');
+            $table->string('ingest_endpoint');
         });
     }
 
