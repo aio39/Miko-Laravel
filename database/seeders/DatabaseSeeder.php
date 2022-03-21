@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Http\Resources\ProductResource;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
             TicketSeeder::class,
             CoinHistorySeeder::class,
             UserTicketSeeder::class,
+            ProductSeeder::class,
         ]);
 
     }
