@@ -15,6 +15,28 @@ class ConcertSeeder extends Seeder
      */
     public function run()
     {
+        // NOTE Seeding할때 각 배열의 컬럼은 동일해야함.
+        DB::table('concerts')->insert([
+            [
+                'created_at' => now(),
+                'updated_at' => now(),
+                'category_id' => 1,
+                'user_id' => 1,
+                'cover_image' => 'f640x640-2.jpeg',
+                'title' => "ivs test",
+                'artist' => "검색 아티스트",
+                'detail' => "ivs test",
+                'content' => "ivs test",
+                'all_concert_start_date' => "2022-01-01 07:00:00",
+                'all_concert_end_date' => "2022-12-31 07:00:00",
+                'channel_arn' => env('channel_arn'),
+                'playback_url' => env('playback_url'),
+                'stream_key_arn' => env('stream_key_arn'),
+                'stream_key_value' => env('stream_key_value'),
+                'ingest_endpoint' => env('ingest_endpoint'),
+            ]
+        ]);
+
         DB::table('concerts')->insert([
             [
                 'created_at' => now(),
@@ -24,11 +46,12 @@ class ConcertSeeder extends Seeder
                 'cover_image' => 'f640x640-2.jpeg',
                 'title' => "天龍プロジェクト",
                 'artist' => "SURVIVE THE REVOLUTION Vol.17",
-                'detail' => "<<特典配送に関するご注意事項>> ・本チケットの販売及びグッズの配送はLINE株式会社（以下「当社」といいます。）が実施します。 ・グッズが発送されている場合、ライブ配信が中止となるなどいかなる理由があっても、特典の返品、返金及び払戻しはできません。・ご入力いただいた配送先住所には、グッズのみを配送いたします。チケットは配送されません。・お客様にお届け先メールアドレス等指定の情報を登録いただけない場合、登録された情報に誤りがあるなどで特典のお届けができない場合、出場予定選手以外を入力された場合、当社は、事前にお客様に通知することなく、特典付きチケットに関する売買契約の解除をすること、お客様が特典を受け取る権利を放棄したものとみなすこと、その他の当社が必要かつ適切と判断する措置をとることができます。・配送に関しては、「LINE LIVE-VIEWING 情報」公式アカウントからご案内する場合がございます。・グッズのお届け予定日に関しては、お問い合わせいただいてもお答えできません・営利目的による第三者への転売行為、または転売のために第三者に提供することは禁止しております。・万が一、特典に不備があった場合、こちらのお問い合わせ先（　info@renaissance-tpj.com　）までご連絡ください。",
-                'content' => "불의의 사고로 아내 레베카를 잃고 힘든 나날을 보내고 있는 막심 드 윈터, 그는 몬테카를로 여행 중 우연히 '나'를 만나 사랑에 빠지게 된다. 행복한 결혼식을 올린 두 사람은 막심의 저택인 맨덜리에서 함께 생활하게 되는데",
-                'all_concert_start_date' => "1997-12-17 07:00:00",
-                'all_concert_end_date' => "1997-12-17 09:10:00",
-            ], [
+                'detail' => "a",
+                'content' => "d",
+                'all_concert_start_date' => "2022-01-01 07:00:00",
+                'all_concert_end_date' => "2022-12-31 07:00:00",
+            ]
+            , [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 2,
@@ -40,7 +63,8 @@ class ConcertSeeder extends Seeder
                 'content' => "불의의 사고로 아내 레베카를 잃고 힘든 나날을 보내고 있는 막심 드 윈터, 그는 몬테카를로 여행 중 우연히 '나'를 만나 사랑에 빠지게 된다. 행복한 결혼식을 올린 두 사람은 막심의 저택인 맨덜리에서 함께 생활하게 되는데",
                 'all_concert_start_date' => "2022-12-17 07:00:00",
                 'all_concert_end_date' => "2022-12-20 07:00:00",
-            ], [
+            ]
+            , [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 3,
@@ -57,7 +81,8 @@ class ConcertSeeder extends Seeder
                 'content' => "불의의 사고로 아내 레베카를 잃고 힘든 나날을 보내고 있는 막심 드 윈터, 그는 몬테카를로 여행 중 우연히 '나'를 만나 사랑에 빠지게 된다. 행복한 결혼식을 올린 두 사람은 막심의 저택인 맨덜리에서 함께 생활하게 되는데",
                 'all_concert_start_date' => "2022-04-17 07:00:00",
                 'all_concert_end_date' => "2022-04-22 07:00:00",
-            ], [
+            ]
+            , [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 3,
@@ -71,7 +96,8 @@ class ConcertSeeder extends Seeder
                         つばみすとさんからの質問に答えていきますよ♪",
                 'all_concert_start_date' => "2022-06-17 07:00:00",
                 'all_concert_end_date' => "2022-06-18 07:00:00",
-            ], [
+            ]
+            , [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 1,
@@ -87,7 +113,8 @@ class ConcertSeeder extends Seeder
                         https://sunmusic-gp.co.jp/content/get_live",
                 'all_concert_start_date' => "2022-03-07 07:00:00",
                 'all_concert_end_date' => "2022-03-09 07:00:00",
-            ], [
+            ]
+            , [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 1,
@@ -102,7 +129,8 @@ class ConcertSeeder extends Seeder
                         是非、配信でお楽しみください！",
                 'all_concert_start_date' => "2022-02-17 07:00:00",
                 'all_concert_end_date' => "2022-05-19 07:00:00",
-            ], [
+            ]
+            , [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 1,
@@ -114,7 +142,8 @@ class ConcertSeeder extends Seeder
                 'detail' => "GLAY ARENA TOUR 2021-2022 'FREEDOM ONLY'",
                 'all_concert_start_date' => "2022-07-17 07:00:00",
                 'all_concert_end_date' => "2022-07-17 09:00:00",
-            ], [
+            ]
+            , [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 1,
