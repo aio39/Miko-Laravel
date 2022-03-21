@@ -22,7 +22,8 @@ class UserSeeder extends Seeder
             'email' => 'admin@example.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
-            'uuid'=> Str::orderedUuid(),
+            'uuid' => Str::orderedUuid(),
+            'coin' => 100000000,
             'created_at' => now(),
             'updated_at' => now(),
         ], [
@@ -30,7 +31,8 @@ class UserSeeder extends Seeder
             'email' => 'miku@example.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
-            'uuid'=> Str::orderedUuid(),
+            'uuid' => Str::orderedUuid(),
+            'coin' => 100000000,
             'created_at' => now(),
             'updated_at' => now(),
         ], [
@@ -38,39 +40,44 @@ class UserSeeder extends Seeder
             'email' => 'rin@example.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
-            'uuid'=> Str::orderedUuid(),
+            'uuid' => Str::orderedUuid(),
+            'coin' => 100000000,
             'created_at' => now(),
             'updated_at' => now(),
-        ],[
+        ], [
             'name' => 'abc1',
             'email' => 'abc1@abc.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
-            'uuid'=> Str::orderedUuid(),
+            'uuid' => Str::orderedUuid(),
+            'coin' => 100000000,
             'created_at' => now(),
             'updated_at' => now(),
-        ],[
+        ], [
             'name' => 'abc2',
             'email' => 'abc2@abc.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
-            'uuid'=> Str::orderedUuid(),
+            'uuid' => Str::orderedUuid(),
+            'coin' => 100000000,
             'created_at' => now(),
             'updated_at' => now(),
-        ],[
+        ], [
             'name' => 'abc3',
             'email' => 'abc3@abc.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
-            'uuid'=> Str::orderedUuid(),
+            'uuid' => Str::orderedUuid(),
+            'coin' => 100000000,
             'created_at' => now(),
             'updated_at' => now(),
-        ],[
+        ], [
             'name' => 'abc4',
             'email' => 'abc4@abc.com',
             'email_verified_at' => now(),
             'password' => \Hash::make('123456789'),
-            'uuid'=> Str::orderedUuid(),
+            'uuid' => Str::orderedUuid(),
+            'coin' => 100000000,
             'created_at' => now(),
             'updated_at' => now(),
         ]]);

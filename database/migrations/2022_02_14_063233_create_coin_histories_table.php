@@ -15,7 +15,7 @@ class CreateCoinHistoriesTable extends Migration
     {
         Schema::create('coin_histories', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->timestampTz('created_at');
 
             $table->bigInteger('user_id')->unsigned()->index();
             $table->bigInteger('ticket_id')->unsigned()->index()->nullable();
