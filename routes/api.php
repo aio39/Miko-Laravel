@@ -38,6 +38,10 @@ Route::apiResource('/coin_histories',\App\Http\Controllers\CoinHistoryController
 Route::apiResource('/products',\App\Http\Controllers\ProductController::class);
 
 
+Route::prefix('/data')->group(function (){
+    Route::get('caspt',[\App\Http\Controllers\DataController::class,'concertAddedScorePerTime']);
+});
+
 Route::post('/users',function(Request $request){
 
     $data = $request->all();

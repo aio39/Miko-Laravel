@@ -14,8 +14,9 @@ class ConcertAddedScorePerTimeTable extends Migration
      */
     public function up()
     {
-        Schema::create('concert_added_score_per_time', function (Blueprint $table) {
+        Schema::create('concert_added_score_per_times', function (Blueprint $table) {
             $table->id();
+            $table->timestampTz('created_at');
             $table->bigInteger('ticket_id')->unsigned()->index();
             $table->bigInteger('concert_id')->unsigned()->index();
             $table->integer('added_score');
@@ -29,6 +30,6 @@ class ConcertAddedScorePerTimeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('concert_added_score_per_time');
+        Schema::dropIfExists('concert_added_score_per_times');
     }
 }
