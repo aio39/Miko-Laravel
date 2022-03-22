@@ -29,11 +29,6 @@ class ConcertSeeder extends Seeder
                 'content' => "ivs test",
                 'all_concert_start_date' => "2022-01-01 07:00:00",
                 'all_concert_end_date' => "2022-12-31 07:00:00",
-                'channel_arn' => env('channel_arn'),
-                'playback_url' => env('playback_url'),
-                'stream_key_arn' => env('stream_key_arn'),
-                'stream_key_value' => env('stream_key_value'),
-                'ingest_endpoint' => env('ingest_endpoint'),
             ]
         ]);
 

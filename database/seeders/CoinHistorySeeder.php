@@ -18,35 +18,30 @@ class CoinHistorySeeder extends Seeder
         DB::table('coin_histories')->insert([
             [
                 'created_at' => now(),
-                'updated_at' => now(),
                 'user_id' => 1,
                 'type'=> 0,
                 'variation' => 5000,
             ],
             [
                 'created_at' => now(),
-                'updated_at' => now(),
                 'user_id' => 1,
                 'type'=> 0,
                 'variation' =>200,
             ],
             [
                 'created_at' => now(),
-                'updated_at' => now(),
                 'user_id' => 1,
                 'type'=> 0,
                 'variation' => 1000,
             ],
             [
                 'created_at' => now(),
-                'updated_at' => now(),
                 'user_id' => 1,
                 'type'=> 0,
                 'variation' => 500,
             ],
             [
                 'created_at' => now(),
-                'updated_at' => now(),
                 'user_id' => 2,
                 'type'=> 0,
                 'variation' => 300,

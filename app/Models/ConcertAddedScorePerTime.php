@@ -13,8 +13,8 @@ class ConcertAddedScorePerTime extends Model
 
     protected $casts = [
         'created_at' => 'datetime',   // date | datetime | timestamp
-        'start' => 'datetime',   // date | datetime | timestamp
-        'end' => 'datetime',   // date | datetime | timestamp
+//        'start' => 'datetime',   // date | datetime | timestamp
+//        'end' => 'datetime',   // date | datetime | timestamp
     ];
 
     public function ticket()

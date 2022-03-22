@@ -30,10 +30,6 @@ class ConcertResource extends JsonResource
             "isPublic" => $this->is_public,
             "allConcertStartDate" => $this->all_concert_start_date,
             "allConcertEndDate" => $this->all_concert_end_date,
-            "channelArn" => $this->channel_arn,
-            "playbackUrl" => $this->playback_url,
-            "streamKeyArn" => $this->stream_key_arn,
-            "streamKeyValue" => $this->stream_key_value,
             "tickets" =>  TicketResource::collection($this->whenLoaded('tickets'))
         ];
     }

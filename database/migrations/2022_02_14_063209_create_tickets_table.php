@@ -27,10 +27,14 @@ class CreateTicketsTable extends Migration
             $table->timestampTz('concert_start_date');
             $table->timestampTz('concert_end_date');
             $table->timestampTz('archive_end_time');
-
 //            $table->unsignedBigInteger('remainTicket')->nullable();
+            $table->string('channel_arn')->nullable();
+            $table->string('playback_url')->nullable();
+            $table->string('stream_key_arn')->nullable();
+            $table->string('stream_key_value')->nullable();
+            $table->string('ingest_endpoint')->nullable();
 
-
+            $table->json('time_meta_data')->nullable();
         });
     }
 

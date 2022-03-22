@@ -16,8 +16,8 @@ class ConcertAddedScorePerTimeResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "createdAt" => $this->created_at,
-            "addedScore" => $this->added_score,
+            "x" => $this->created_at,
+            "y" => $this->added_score,
             "concertId" => $this->concert_id,
             "concert" =>  new ConcertResource($this->whenLoaded('concert')),
             "ticketId" => $this->ticket_id,

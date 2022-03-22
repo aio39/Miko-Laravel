@@ -15,30 +15,45 @@ class TicketSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('tickets')->insert([
             [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'concert_id' => 1,
-                'price' => 5600,
+                'price' => 100,
                 'running_time' => 130,
                 'sale_start_date' => '1997-06-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '1997-12-17 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '1997-12-17 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '1997-12-17 09:10:00', // 콘서트종료 날짜
-                'archive_end_time' => '1998-12-17 11:59:00', // 다시보기 기간
+                'sale_end_date' => '2025-12-17 07:00:00', // 판매종료 날짜
+                'concert_start_date' => '2022-01-17 07:00:00', // 콘서트시작 날짜
+                'concert_end_date' => '2022-12-17 10:00:00', // 콘서트종료 날짜
+                'archive_end_time' => '2023-12-17 00:00:00', // 다시보기 기간
+                'channel_arn' => env('channel_arn'),
+                'playback_url' => env('playback_url'),
+                'stream_key_arn' => env('stream_key_arn'),
+                'stream_key_value' => env('stream_key_value'),
+                'ingest_endpoint' => env('ingest_endpoint'),
             ], [
                 'created_at' => now(),
                 'updated_at' => now(),
-                'concert_id' => 2,
-                'price' => 13000,
+                'concert_id' => 1,
+                'price' => 100,
                 'running_time' => 180,
                 'sale_start_date' => '2022-06-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-12-17 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-12-17 07:00:00', // 콘서트시작 날짜
+                'sale_end_date' => '2025-12-17 07:00:00', // 판매종료 날짜
+                'concert_start_date' => '2022-01-17 07:00:00', // 콘서트시작 날짜
                 'concert_end_date' => '2022-12-17 10:00:00', // 콘서트종료 날짜
                 'archive_end_time' => '2023-12-17 00:00:00', // 다시보기 기간
-            ], [
+                'channel_arn' => env('channel_arn'),
+                'playback_url' => env('playback_url'),
+                'stream_key_arn' => env('stream_key_arn'),
+                'stream_key_value' => env('stream_key_value'),
+                'ingest_endpoint' => env('ingest_endpoint'),
+            ],
+        ]);
+
+        DB::table('tickets')->insert([
+            [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'concert_id' => 2,

@@ -31,11 +31,7 @@ class CreateConcertsTable extends Migration
             $table->timestampTz('all_concert_start_date',0);
             $table->timestampTz('all_concert_end_date',0);
 
-            $table->string('channel_arn')->nullable();
-            $table->string('playback_url')->nullable();
-            $table->string('stream_key_arn')->nullable();
-            $table->string('stream_key_value')->nullable();
-            $table->string('ingest_endpoint')->nullable();
+
         });
     }
 
