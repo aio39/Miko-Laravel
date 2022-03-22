@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 // NOTE 끝에 Table 이름이 안 붙이면 에러
-class ConcertAddedScorePerTimeTable extends Migration
+class ConcertAddedScorePerTimesTable extends Migration
 {
     /**
      * Run the migrations.
