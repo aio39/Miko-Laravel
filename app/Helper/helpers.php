@@ -1,5 +1,6 @@
 <?php
 namespace App\Helper;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 if (! function_exists('applyDefaultFindById')) {
@@ -55,6 +56,11 @@ if (! function_exists('applyDefaultFSW')) {
         $query->when(request()->filled('start') && request()->filled('end'), function ($query) {
             $query->whereBetween('created_at',[request('start'),request('end')]);
             return $query;
+
+//            $start = Carbon::createFromTimestamp(request('start'))->toDateTimeString();
+//            $end = Carbon::createFromTimestamp(request('end'))->toDateTimeString();
+////            dd($start,$end);
+//            $query->whereBetween('created_at',[$start,$end]);
         });
 
         $query->when(request()->filled('up-start') && request()->filled('up-end'), function ($query) {
