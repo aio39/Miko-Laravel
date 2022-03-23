@@ -50,7 +50,7 @@ return [
             'bucket' => array_key_exists('AWS_BUCKET', $_SERVER) ? $_SERVER['AWS_BUCKET'] : env('AWS_BUCKET'),
             'url' => array_key_exists('AWS_URL', $_SERVER) ? $_SERVER['AWS_URL'] : env('AWS_URL'),
             'endpoint' => array_key_exists('AWS_ENDPOINT', $_SERVER) ? $_SERVER['AWS_ENDPOINT'] : env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => array_key_exists('AWS_USE_PATH_STYLE_ENDPOINT', $_SERVER) ? $_SERVER['AWS_USE_PATH_STYLE_ENDPOINT'] : env('AWS_USE_PATH_STYLE_ENDPOINT', true),
+            'use_path_style_endpoint' => true
         ],
 
     ],
