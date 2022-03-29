@@ -11,7 +11,20 @@ class CoinHistory extends Model
 
     protected $guarded = [];
 
+    public $timestamps = false;
 
+    protected $casts = [
+        'created_at' => 'datetime',   // date | datetime | timestamp
+    ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->created_at = $model->freshTimestamp();
+        });
+    }
 
     public function user()
     {

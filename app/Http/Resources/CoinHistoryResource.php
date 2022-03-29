@@ -16,6 +16,7 @@ class CoinHistoryResource extends JsonResource
     {
         return [
             "Id" => $this->id,
+            "createdAt" => $this->created_at,
             "userId" => $this->user_id,
             "user" =>  new UserResource($this->whenLoaded('user')),
             "ticketId" => $this->ticket_id,
