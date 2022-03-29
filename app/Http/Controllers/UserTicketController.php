@@ -53,6 +53,7 @@ class UserTicketController extends Controller
 
         $ticket = Ticket::query()->with('concert')->findOrFail($ticket_id);
         $concert = $ticket->concert;
+        $seller_id = $concert->user_id;
 
         // 코인이 부족하면 실패
         if($user-> coin < $ticket->price) {
@@ -66,8 +67,10 @@ class UserTicketController extends Controller
 
             User::query()->where('id', Auth::id())->decrement('coin', $ticket->price);
 
-            $coin_history_data = ["user_id"=> $user_id, "ticket_id" => $ticket->id, "type"=>  1 , "variation" => -($ticket->price) ] ;
-            CoinHistory::create($coin_history_data);
+            $buyer_coin_history_data = ["user_id"=> $user_id, "ticket_id" => $ticket->id, "type"=>  1 , "variation" => -1 * ($ticket->price) ] ;
+            $seller_coin_history_data = ["user_id"=> $seller_id, "ticket_id" => $ticket->id, "concert_id" => $concert->id, "type"=>  5 , "variation" => ($ticket->price) ] ;
+            CoinHistory::create($buyer_coin_history_data);
+            CoinHistory::create($seller_coin_history_data);
 
             DB::commit();
         } catch (\Exception $e) {
