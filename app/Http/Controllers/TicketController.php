@@ -72,7 +72,9 @@ class TicketController extends Controller
      */
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
-        //
+        $ticket->fill($request->all());
+        $ticket->updateOrFail();
+        return  new TicketResource($ticket);
     }
 
     /**

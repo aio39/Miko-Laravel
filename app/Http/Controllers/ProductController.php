@@ -73,7 +73,9 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $product->fill($request->all());
+        $product->updateOrFail();
+        return  new ProductResource($product);
     }
 
     /**

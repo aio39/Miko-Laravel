@@ -104,12 +104,14 @@ class UserTicketController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateTicketRequest  $request
-     * @param  \App\Models\Ticket  $ticket
+     * @param  \App\Models\Ticket  $userTicket
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserTicketRequest $request, Ticket $ticket)
+    public function update(UpdateUserTicketRequest $request, UserTicket $userTicket)
     {
-        //
+        $userTicket->fill($request->all());
+        $userTicket->updateOrFail();
+        return  new UserTicketResource($userTicket);
     }
 
     /**
@@ -118,7 +120,7 @@ class UserTicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ticket $ticket)
+    public function destroy(UserTicket $ticket)
     {
         //
     }

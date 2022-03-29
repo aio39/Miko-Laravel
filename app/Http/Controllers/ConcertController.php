@@ -95,11 +95,9 @@ class ConcertController extends Controller
      */
     public function update(UpdateConcertRequest $request, Concert $concert)
     {
-        // Gate::authorize('update', $concert);
-
-        $concert->update();
-        // 수정해야함.
-        return response()->json($concert);
+        $concert->fill($request->all());
+        $concert->updateOrFail();
+        return  new ConcertResource($concert);
     }
 
     /**
