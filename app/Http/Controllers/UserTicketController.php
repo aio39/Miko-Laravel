@@ -66,6 +66,7 @@ class UserTicketController extends Controller
             $user_ticket = UserTicket::create(["user_id" => $user_id, "ticket_id" => $ticket->id,"concert_id"=> $ticket->concert_id]);
 
             User::query()->where('id', Auth::id())->decrement('coin', $ticket->price);
+            User::query()->where('id', $seller_id)->decrement('coin', -1 * $ticket->price);
 
             $buyer_coin_history_data = ["user_id"=> $user_id, "ticket_id" => $ticket->id, "type"=>  1 , "variation" => -1 * ($ticket->price) ] ;
             $seller_coin_history_data = ["user_id"=> $seller_id, "ticket_id" => $ticket->id, "concert_id" => $concert->id, "type"=>  5 , "variation" => ($ticket->price) ] ;

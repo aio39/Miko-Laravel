@@ -15,7 +15,7 @@ class CoinHistoryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "Id" => $this->id,
+            "id" => $this->id,
             "createdAt" => $this->created_at,
             "userId" => $this->user_id,
             "user" =>  new UserResource($this->whenLoaded('user')),
