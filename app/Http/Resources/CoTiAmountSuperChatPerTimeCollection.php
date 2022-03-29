@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ConcertAddedScorePerTimeCollection extends ResourceCollection
+class CoTiAmountSuperChatPerTimeCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.

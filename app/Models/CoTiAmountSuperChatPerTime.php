@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ConcertAddedScorePerTime extends Model
+class CoTiAmountSuperChatPerTime extends Model
 {
     use HasFactory;
 
@@ -24,6 +24,4 @@ class ConcertAddedScorePerTime extends Model
     {
         return $this->belongsTo(Concert::class);
     }
-
-
 }

@@ -40,6 +40,10 @@ Route::apiResource('/products',\App\Http\Controllers\ProductController::class);
 
 Route::prefix('/data')->group(function (){
     Route::get('caspt',[\App\Http\Controllers\DataController::class,'concertAddedScorePerTime']);
+    Route::get('ctacpt',[\App\Http\Controllers\DataController::class,'coTiAddedChatPerTime']);
+    Route::get('ctadpt',[\App\Http\Controllers\DataController::class,'coTiAmountDonePerTime']);
+    Route::get('ctascpt',[\App\Http\Controllers\DataController::class,'coTiAmountSuperChatPerTime']);
+    Route::get('ctceun',[\App\Http\Controllers\DataController::class,'coTiCurEnterUserNum']);
 });
 
 Route::post('/users',function(Request $request){
