@@ -30,7 +30,7 @@ class TicketResource extends JsonResource
             "streamKeyArn" => $this->stream_key_arn,
             "streamKeyValue" => $this->stream_key_value,
             "ingestEndpoint" => $this->ingest_endpoint,
-            "timeMetaData" => $this->time_meta_data,
+            "timeMetaData" =>  json_decode($this->time_meta_data,false),
             "chats"=> ChatResource::collection($this->whenLoaded('chats')),
             "coinHistories"=> ChatResource::collection($this->whenLoaded('coinHistories')),
             "userTickets"=> ChatResource::collection($this->whenLoaded('userTickets'))

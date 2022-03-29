@@ -74,6 +74,7 @@ class TicketController extends Controller
     {
         $ticket->fill($request->all());
         $ticket->updateOrFail();
+        $ticket->time_meta_data = json_encode($ticket->time_meta_data);
         return  new TicketResource($ticket);
     }
 
