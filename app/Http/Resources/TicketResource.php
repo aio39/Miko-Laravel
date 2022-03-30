@@ -17,7 +17,7 @@ class TicketResource extends JsonResource
         return [
             "id" => $this->id,
             "concertId" => $this->concert_id,
-            "concert" =>  new UserResource($this->whenLoaded('concert')),
+            "concert" =>  new ConcertResource($this->whenLoaded('concert')),
             "price" => $this->price,
             "runningTime" => $this->running_time,
             "saleStartDate" => $this->sale_start_date,
