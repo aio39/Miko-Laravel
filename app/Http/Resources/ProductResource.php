@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Concert;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
@@ -17,12 +18,13 @@ class ProductResource extends JsonResource
         return [
             "id" => $this->id,
             "concert_id" => $this->concert_id,
-            "concert" =>  new UserResource($this->whenLoaded('concert')),
+            "concert" =>  new ConcertResource($this->whenLoaded('concert')),
             "price" => $this->price,
             "name" => $this->name,
             "detail" => $this->detail,
             "image" => $this->image,
-
+            "createdAt" => $this->created_at,
+            "updatedAt" => $this->updated_at,
         ];
     }
 }

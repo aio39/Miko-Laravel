@@ -46,19 +46,8 @@ Route::prefix('/data')->group(function (){
     Route::get('ctceun',[\App\Http\Controllers\DataController::class,'coTiCurEnterUserNum']);
 });
 
-Route::post('/users',function(Request $request){
-
-    $data = $request->all();
-    $data['password'] = \Hash::make($request->password);
-    $data['uuid'] = Str::orderedUuid();
-    $user = User::create($data);
-
-    return $user
-        ? response()->json($data,201)
-        : response()->json([],500);
+Route::prefix('/users')->group(function(){
+    Route::get('coin',[\App\Http\Controllers\UserController::class,'getCoin']);
 });
+Route::apiResource('/users',\App\Http\Controllers\UserController::class);
 
-
-Route::get('/users',function(Request $request){
-    return  Auth::check() ? response()->json(Auth::user()) : response()->json('please login',404);
-});
