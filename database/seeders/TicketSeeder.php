@@ -17,8 +17,9 @@ class TicketSeeder extends Seeder
     public function run()
     {
 
-        $startDate = Carbon::now('Asia/Seoul')->add(2, 'minute');
-        $endDate = Carbon::now('Asia/Seoul')->add(4, 'minute');
+        $startDate = Carbon::now('Asia/Seoul')->add(1, 'minute');
+        $endDate3 = Carbon::now('Asia/Seoul')->add(1, 'hour');
+        $endDate4 = Carbon::now('Asia/Seoul')->add(2, 'minute');
 
         DB::table('tickets')->insert([
             [
@@ -64,9 +65,9 @@ class TicketSeeder extends Seeder
                 'price' => 13000,
                 'running_time' => 180,
                 'sale_start_date' => '2022-03-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-12-18 00:00:00', // 판매종료 날짜
+                'sale_end_date' => $endDate3, // 판매종료 날짜
                 'concert_start_date' => $startDate, // 콘서트시작 날짜
-                'concert_end_date' => '2022-12-18 10:00:00', // 콘서트종료 날짜
+                'concert_end_date' => $endDate3, // 콘서트종료 날짜
                 'archive_end_time' => '2023-12-18 00:00:00', // 다시보기 기간
             ], [
                 'created_at' => now(),
@@ -75,9 +76,9 @@ class TicketSeeder extends Seeder
                 'price' => 13000,
                 'running_time' => 180,
                 'sale_start_date' => '2022-01-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' =>  $endDate, // 판매종료 날짜
-                'concert_start_date' => '2022-3-30 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => $endDate, // 콘서트종료 날짜
+                'sale_end_date' =>  $endDate4, // 판매종료 날짜
+                'concert_start_date' => $startDate, // 콘서트시작 날짜
+                'concert_end_date' => $endDate4, // 콘서트종료 날짜
                 'archive_end_time' => '2023-12-19 00:00:00', // 다시보기 기간
             ], [
                 'created_at' => now(),
