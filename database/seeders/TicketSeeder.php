@@ -17,9 +17,9 @@ class TicketSeeder extends Seeder
     public function run()
     {
 
-        $startDate = Carbon::now('Asia/Seoul')->add(1, 'minute');
-        $endDate3 = Carbon::now('Asia/Seoul')->add(1, 'hour');
-        $endDate4 = Carbon::now('Asia/Seoul')->add(2, 'minute');
+        $startDate = Carbon::now()->add(1, 'minute');
+        $endDate3 = Carbon::now()->add(1, 'hour');
+        $endDate4 = Carbon::now()->add(2, 'minute');
 
         DB::table('tickets')->insert([
             [
