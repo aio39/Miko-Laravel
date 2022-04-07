@@ -27,11 +27,10 @@ class CreateConcertsTable extends Migration
             $table->longText('content')->nullable();
 
             $table->boolean('is_public')->default(false);
+            $table->unsignedInteger('sales_volume')->default(0);
 
-            $table->timestampTz('all_concert_start_date',0);
-            $table->timestampTz('all_concert_end_date',0);
-
-
+            $table->timestampTz('all_concert_start_date', 0);
+            $table->timestampTz('all_concert_end_date', 0);
         });
     }
 

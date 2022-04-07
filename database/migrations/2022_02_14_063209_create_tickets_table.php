@@ -34,6 +34,8 @@ class CreateTicketsTable extends Migration
             $table->string('stream_key_value')->nullable();
             $table->string('ingest_endpoint')->nullable();
 
+            $table->unsignedInteger('sales_volume')->default(0);
+
             $table->json('time_meta_data')->nullable();
         });
     }

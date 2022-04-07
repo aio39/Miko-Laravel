@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('detail');
             $table->string('image');
 
+            $table->unsignedInteger('sales_volume')->default(0);
         });
     }
 
