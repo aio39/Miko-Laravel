@@ -28,4 +28,14 @@ class Product extends Model
             );
     }
 
+    public function carts(){
+        return $this->belongsToMany('App\Models\Cart');
+    }
+
+    public function cartProducts()
+    {
+        return $this->belongsToMany('App\Models\CartProduct');
+
+    }
+
 }

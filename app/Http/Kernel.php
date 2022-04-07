@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\ConvertToSnail;
+use App\Http\Middleware\Cors;
 use App\Http\Middleware\CreateSessionTimeoutCookie;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Session\Middleware\StartSession;
