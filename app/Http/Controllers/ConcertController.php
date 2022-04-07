@@ -65,7 +65,7 @@ class ConcertController extends Controller
             $path = $request->file('cover_image')->store('cover_image', 's3'); // s3에 image 저장.
         }
         $input = array_merge($request->except('cover_image'), ['cover_image' => $path]);
-
+        $user = auth()->user();
         $concert = Concert::create($input);
 
         return (new ConcertResource($concert))->response();

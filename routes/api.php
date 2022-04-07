@@ -37,6 +37,11 @@ Route::apiResource('/chats', \App\Http\Controllers\ChatController::class);
 Route::apiResource('/coin_histories',\App\Http\Controllers\CoinHistoryController::class);
 Route::apiResource('/products',\App\Http\Controllers\ProductController::class);
 
+Route::apiResource('/orders',\App\Http\Controllers\OrderController::class);
+Route::apiResource('/order_products',\App\Http\Controllers\OrderProductController::class);
+Route::apiResource('/carts',\App\Http\Controllers\CartController::class);
+Route::apiResource('/cart_products',\App\Http\Controllers\CartProductController::class);
+
 
 Route::prefix('/data')->group(function (){
     Route::get('caspt',[\App\Http\Controllers\DataController::class,'concertAddedScorePerTime']);

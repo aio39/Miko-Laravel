@@ -32,6 +32,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -85,5 +86,23 @@ class User extends Authenticatable
                 'is_used',
                 'p_ranking',
                 'g_ranking',);
+    }
+
+    public function orders(){
+        return $this->hasMany('App\Models\Order');
+    }
+
+    public function carts(){
+        return $this->hasOne(Cart::class);
+    }
+    protected static function boot() {
+
+        parent::boot();
+
+        static::created(function ($user) {
+            $cart = new Cart();
+            $cart->user_id = $user->id;
+            $cart->save();
+        });
     }
 }

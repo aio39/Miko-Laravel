@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CoinHistorySeeder::class,
             UserTicketSeeder::class,
             ProductSeeder::class,
+            CartSeeder::class,
         ]);
 
     }
