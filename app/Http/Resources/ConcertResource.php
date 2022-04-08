@@ -28,6 +28,7 @@ class ConcertResource extends JsonResource
             "detail" => $this->detail,
             "content" => $this->content,
             "isPublic" => $this->is_public,
+            "salesVolume" => $this->sales_volume,
             "allConcertStartDate" => $this->all_concert_start_date,
             "allConcertEndDate" => $this->all_concert_end_date,
             "tickets" =>  TicketResource::collection($this->whenLoaded('tickets'))

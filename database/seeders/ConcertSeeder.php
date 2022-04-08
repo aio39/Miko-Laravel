@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ConcertSeeder extends Seeder
 {
@@ -15,6 +16,15 @@ class ConcertSeeder extends Seeder
      */
     public function run()
     {
+        $longContext = "修飾語が要らない作品<レベッカ>6番目のシーズンに戻ってきた代替不可「レジェンドミュージカル」約12ヶ国、10ヶ国語で公演され、全世界1900万観客を突破した興行作2013年韓国初演から2019年5番目のシーズンまで計687回公演、83万人を記録した。 冷めない「レベッカシンドローム」 映画より強烈なサスペンスの饗宴 強力なキーリングナンバー、劇の緊張感を高める舞台セットが集結した断然最高の「マスターピース」英国を代表する作家ダフニー·デュ·モリエの小説とスリラーの巨匠アルフレッド·ヒッチコックの映画<レベッカ>をモチーフにした作品。 「エリザベート」、「モーツァルト！」、「マリー·アントワネット」など40年間最高の作品を輩出したミヒャエル·クンツェ劇作家とシルベスター·ルベイ作曲家の指折りの傑作しっかりと編まれた脚本と無駄のない演出「レベッカ」、「神よ」、「一日一日」など強力なキリングナンバーと生きて動くような「マンダリー邸」の舞台セットでミュージカル界の権力座を占めた作品。";
+        $shortContext = "GLAY ARENA TOUR 2021-2022 'FREEDOM ONLY'";
+
+        $detail = "HKT48 LIVE TOUR 2022 ～Under the Spotlight～<東京公演> 2019年ぶりのHKT48ツアー！今回は九州だけでなく、東京・神奈川・愛知でも開催！また、スペシャルゲストが出演する特別なツアーとなっています！";
+
+        $startDate = Carbon::now()->add(1, 'minute');
+        $endDate3 = Carbon::now()->add(1, 'hour');
+        $endDate4 = Carbon::now()->add(2, 'minute');
+
         // NOTE Seeding할때 각 배열의 컬럼은 동일해야함.
         DB::table('concerts')->insert([
             [
@@ -22,139 +32,175 @@ class ConcertSeeder extends Seeder
                 'updated_at' => now(),
                 'category_id' => 1,
                 'user_id' => 1,
-                'cover_image' => 'f640x640-2.jpeg',
+                'cover_image' => 'cover_image/0PJdEMLUNRgsKUqYxGLVWc34FIMPjEXd2SAWA87r.jpg',
                 'title' => "ivs test",
-                'artist' => "검색 아티스트",
-                'detail' => "ivs test",
-                'content' => "ivs test",
-                'all_concert_start_date' => "2022-01-01 07:00:00",
-                'all_concert_end_date' => "2022-12-31 07:00:00",
-            ]
-        ]);
-
-        DB::table('concerts')->insert([
+                'artist' => "test",
+                'detail' => $detail,
+                'content' => $longContext,
+                'all_concert_start_date' => "2022-01-17 07:00:00",
+                'all_concert_end_date' => "2022-12-17 10:00:00",
+                'sales_volume' => 5,
+            ],
             [
                 'created_at' => now(),
                 'updated_at' => now(),
-                'category_id' => 1,
+                'category_id' => 3,
                 'user_id' => 1,
-                'cover_image' => 'f640x640-2.jpeg',
+                'cover_image' => 'cover_image/f640x640-2.jpeg',
                 'title' => "天龍プロジェクト",
                 'artist' => "SURVIVE THE REVOLUTION Vol.17",
-                'detail' => "a",
-                'content' => "d",
-                'all_concert_start_date' => "2022-01-01 07:00:00",
-                'all_concert_end_date' => "2022-12-31 07:00:00",
-            ]
-            , [
+                'detail' => $detail,
+                'content' => $longContext,
+                'all_concert_start_date' => $startDate,
+                'all_concert_end_date' => $endDate3,
+                'sales_volume' => 1,
+            ], [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 2,
                 'user_id' => 1,
-                'cover_image' => 'f640x640-3.jpeg',
-                'title' => "레베카",
-                'artist' => "옥주현",
-                'detail' => "수식어가 필요 없는 작품 <레베카> 6번째 시즌으로 돌아온 대체 불가 '레전드 뮤지컬' 약 12개국, 10개 언어로 공연되며 전 세계 1,900만 관객을 돌파한 흥행작 2013년 한국 초연부터 2019년 다섯 번째 시즌까지 총 687회 공연, 83만명 기록. 식지 않는 '레베카 신드롬'. 영화보다 강렬한 서스펜스의 향연. 강력한 킬링 넘버, 극의 긴장감을 높이는 무대세트가 집결된 단연 최고의 '마스터피스' 영국의 대표 작가 대프니 듀 모리에의 소설과 스릴러의 거장 알프레도 히치콕의 영화 <레베카>를 모티브로 한 작품. '엘리자벳', '모차르트!', '마리 앙투아네트' 등 40여년간 최고의 작품들을 배출한 미하엘 쿤체 극작가와 실베스터 르베이 작곡가의 손꼽히는 걸작 탄탄하게 짜여진 극본과 군더더기 없는 연출 '레베카', '신이여', '하루 또 하루' 등 강력한 킬링넘버와 살아 움직이는 듯한 '맨덜리 저택' 무대 세트로 뮤지컬계 권좌를 차지한 작품",
-                'content' => "불의의 사고로 아내 레베카를 잃고 힘든 나날을 보내고 있는 막심 드 윈터, 그는 몬테카를로 여행 중 우연히 '나'를 만나 사랑에 빠지게 된다. 행복한 결혼식을 올린 두 사람은 막심의 저택인 맨덜리에서 함께 생활하게 되는데",
-                'all_concert_start_date' => "2022-12-17 07:00:00",
-                'all_concert_end_date' => "2022-12-20 07:00:00",
-            ]
-            , [
+                'cover_image' => 'cover_image/f640x640-3.jpeg',
+                'title' => "レベッカ",
+                'artist' => "オク·ジュヒョン",
+                'detail' => $detail,
+                'content' => $longContext,
+                'all_concert_start_date' => "2022-04-17 07:00:00",
+                'all_concert_end_date' => "2022-12-20 16:00:00",
+                'sales_volume' => 1,
+            ], [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 3,
                 'user_id' => 1,
-                'cover_image' => 'f640x640-4.jpeg',
+                'cover_image' => 'cover_image/f640x640-4.jpeg',
                 'title' => "fripSide",
                 'artist' => "fripSide VIRTUAL LIVE 2022",
-                'detail' => "2022年1月8日VARKにて開催された『fripSide VIRTUAL LIVE 2022 in VARK』をアーカイブ配信で期間限定公開！
-                        このライブは「fripSide」のお二人が3Dモデルアバターとなり、バーチャル空間内にて開催されました。
-                        バーチャルならではの演出によって、ステージあるいは空間全体へと広がる楽曲の世界観を、ぜひご覧ください！
-                        この期間だけの特別の再販をどうぞお見逃しなく。
-                        ▼特設サイト
-                        https://lp.vark.co.jp/fripside_virtual_live/",
-                'content' => "불의의 사고로 아내 레베카를 잃고 힘든 나날을 보내고 있는 막심 드 윈터, 그는 몬테카를로 여행 중 우연히 '나'를 만나 사랑에 빠지게 된다. 행복한 결혼식을 올린 두 사람은 막심의 저택인 맨덜리에서 함께 생활하게 되는데",
+                'detail' => $detail,
+                'content' => $longContext,
                 'all_concert_start_date' => "2022-04-17 07:00:00",
                 'all_concert_end_date' => "2022-04-22 07:00:00",
-            ]
-            , [
+                'sales_volume' => 1,
+            ], [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 3,
                 'user_id' => 2,
-                'cover_image' => 'f640x640-5.jpeg',
+                'cover_image' => 'cover_image/f640x640-5.jpeg',
                 'title' => "東京ヤクルトスワローズ公式マスコット",
                 'artist' => "つばみオンラインファンミーティング",
-                'content' => "수식어가 필요 없는 작품 <레베카> 6번째 시즌으로 돌아온 대체 불가 '레전드 뮤지컬' 약 12개국, 10개 언어로 공연되며 전 세계 1,900만 관객을 돌파한 흥행작 2013년 한국 초연부터 2019년 다섯 번째 시즌까지 총 687회 공연, 83만명 기록. 식지 않는 '레베카 신드롬'. 영화보다 강렬한 서스펜스의 향연. 강력한 킬링 넘버, 극의 긴장감을 높이는 무대세트가 집결된 단연 최고의 '마스터피스' 영국의 대표 작가 대프니 듀 모리에의 소설과 스릴러의 거장 알프레도 히치콕의 영화 <레베카>를 모티브로 한 작품. '엘리자벳', '모차르트!', '마리 앙투아네트' 등 40여년간 최고의 작품들을 배출한 미하엘 쿤체 극작가와 실베스터 르베이 작곡가의 손꼽히는 걸작 탄탄하게 짜여진 극본과 군더더기 없는 연출 '레베카', '신이여', '하루 또 하루' 등 강력한 킬링넘버와 살아 움직이는 듯한 '맨덜리 저택' 무대 세트로 뮤지컬계 권좌를 차지한 작품",
-                'detail' => "東京ヤクルトスワローズ公式マスコット「つばみ」による配信ライブです！　
-                        おうちでつばみちゃんとゆっくり過ごしませんか？　　　　　　　　　　　　　　
-                        つばみすとさんからの質問に答えていきますよ♪",
-                'all_concert_start_date' => "2022-06-17 07:00:00",
-                'all_concert_end_date' => "2022-06-18 07:00:00",
-            ]
-            , [
+                'detail' => $detail,
+                'content' => $longContext,
+                'all_concert_start_date' => "2022-06-17 09:00:00",
+                'all_concert_end_date' => "2022-06-18 08:30:00",
+                'sales_volume' => 5,
+            ], [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 1,
                 'user_id' => 2,
-                'cover_image' => 'f640x640-5.jpeg',
+                'cover_image' => 'cover_image/f640x640-6.jpeg',
                 'title' => "サンミュージック所属芸人",
                 'artist' => "サンミュージックGETライブ",
-                'content' => "수식어가 필요 없는 작품 <레베카> 6번째 시즌으로 돌아온 대체 불가 '레전드 뮤지컬' 약 12개국, 10개 언어로 공연되며 전 세계 1,900만 관객을 돌파한 흥행작 2013년 한국 초연부터 2019년 다섯 번째 시즌까지 총 687회 공연, 83만명 기록. 식지 않는 '레베카 신드롬'. 영화보다 강렬한 서스펜스의 향연. 강력한 킬링 넘버, 극의 긴장감을 높이는 무대세트가 집결된 단연 최고의 '마스터피스' 영국의 대표 작가 대프니 듀 모리에의 소설과 스릴러의 거장 알프레도 히치콕의 영화 <레베카>를 모티브로 한 작품. '엘리자벳', '모차르트!', '마리 앙투아네트' 등 40여년간 최고의 작품들을 배출한 미하엘 쿤체 극작가와 실베스터 르베이 작곡가의 손꼽히는 걸작 탄탄하게 짜여진 극본과 군더더기 없는 연출 '레베카', '신이여', '하루 또 하루' 등 강력한 킬링넘버와 살아 움직이는 듯한 '맨덜리 저택' 무대 세트로 뮤지컬계 권좌를 차지한 작품",
-                'detail' => "◇サンミュージックGETライブ
-                        【日時】2022年3月9日（水）
-                        【開演】19時00分
-                        【出演者】公式HPにてご確認ください。
-                        https://sunmusic-gp.co.jp/content/get_live",
+                'detail' => $detail,
+                'content' => $shortContext,
                 'all_concert_start_date' => "2022-03-07 07:00:00",
-                'all_concert_end_date' => "2022-03-09 07:00:00",
-            ]
-            , [
+                'all_concert_end_date' => "2022-03-09 09:00:00",
+                'sales_volume' => 1,
+            ], [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 1,
                 'user_id' => 2,
-                'cover_image' => 'f640x640-6.jpeg',
+                'cover_image' => 'cover_image/f640x640-7.jpeg',
                 'title' => "RIZIN",
                 'artist' => "RIZIN LANDMARK vol.2",
-                'content' => "수식어가 필요 없는 작품 <레베카> 6번째 시즌으로 돌아온 대체 불가 '레전드 뮤지컬' 약 12개국, 10개 언어로 공연되며 전 세계 1,900만 관객을 돌파한 흥행작 2013년 한국 초연부터 2019년 다섯 번째 시즌까지 총 687회 공연, 83만명 기록. 식지 않는 '레베카 신드롬'. 영화보다 강렬한 서스펜스의 향연. 강력한 킬링 넘버, 극의 긴장감을 높이는 무대세트가 집결된 단연 최고의 '마스터피스' 영국의 대표 작가 대프니 듀 모리에의 소설과 스릴러의 거장 알프레도 히치콕의 영화 <레베카>를 모티브로 한 작품. '엘리자벳', '모차르트!', '마리 앙투아네트' 등 40여년간 최고의 작품들을 배출한 미하엘 쿤체 극작가와 실베스터 르베이 작곡가의 손꼽히는 걸작 탄탄하게 짜여진 극본과 군더더기 없는 연출 '레베카', '신이여', '하루 또 하루' 등 강력한 킬링넘버와 살아 움직이는 듯한 '맨덜리 저택' 무대 세트로 뮤지컬계 권좌를 차지한 작품",
-                'detail' => "3月6日（日）にて会場非公開で行われる『+WEED presents RIZIN LANDMARK vol.2』の配信チケットを販売。
-                        LANDMARKシリーズは、通常の有観客イベントとは異なり、有料ライブ配信をメインで行う新形態のRIZIN。
-                        スペシャルワンマッチは鈴木千裕 vs. 平本蓮　他
-                        是非、配信でお楽しみください！",
+                'detail' => $detail,
+                'content' => $shortContext,
                 'all_concert_start_date' => "2022-02-17 07:00:00",
                 'all_concert_end_date' => "2022-05-19 07:00:00",
-            ]
-            , [
+                'sales_volume' => 0,
+            ], [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 1,
                 'user_id' => 2,
-                'cover_image' => 'f640x640-7.jpeg',
+                'cover_image' => 'cover_image/f640x640-8.jpeg',
                 'title' => "GLAY",
                 'artist' => "FREEDOM ONLY",
-                'content' => "수식어가 필요 없는 작품 <레베카> 6번째 시즌으로 돌아온 대체 불가 '레전드 뮤지컬' 약 12개국, 10개 언어로 공연되며 전 세계 1,900만 관객을 돌파한 흥행작 2013년 한국 초연부터 2019년 다섯 번째 시즌까지 총 687회 공연, 83만명 기록. 식지 않는 '레베카 신드롬'. 영화보다 강렬한 서스펜스의 향연. 강력한 킬링 넘버, 극의 긴장감을 높이는 무대세트가 집결된 단연 최고의 '마스터피스' 영국의 대표 작가 대프니 듀 모리에의 소설과 스릴러의 거장 알프레도 히치콕의 영화 <레베카>를 모티브로 한 작품. '엘리자벳', '모차르트!', '마리 앙투아네트' 등 40여년간 최고의 작품들을 배출한 미하엘 쿤체 극작가와 실베스터 르베이 작곡가의 손꼽히는 걸작 탄탄하게 짜여진 극본과 군더더기 없는 연출 '레베카', '신이여', '하루 또 하루' 등 강력한 킬링넘버와 살아 움직이는 듯한 '맨덜리 저택' 무대 세트로 뮤지컬계 권좌를 차지한 작품",
-                'detail' => "GLAY ARENA TOUR 2021-2022 'FREEDOM ONLY'",
+                'detail' => $detail,
+                'content' => $shortContext,
                 'all_concert_start_date' => "2022-07-17 07:00:00",
                 'all_concert_end_date' => "2022-07-17 09:00:00",
-            ]
-            , [
+                'sales_volume' => 0,
+            ], [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'category_id' => 1,
                 'user_id' => 2,
-                'cover_image' => 'f640x640.jpeg',
+                'cover_image' => 'cover_image/f640x640.jpeg',
                 'title' => "Broken my toybox",
                 'artist' => "Broken my toybox ／ CIVILIAN",
-                'content' => "수식어가 필요 없는 작품 <레베카> 6번째 시즌으로 돌아온 대체 불가 '레전드 뮤지컬' 약 12개국, 10개 언어로 공연되며 전 세계 1,900만 관객을 돌파한 흥행작 2013년 한국 초연부터 2019년 다섯 번째 시즌까지 총 687회 공연, 83만명 기록. 식지 않는 '레베카 신드롬'. 영화보다 강렬한 서스펜스의 향연. 강력한 킬링 넘버, 극의 긴장감을 높이는 무대세트가 집결된 단연 최고의 '마스터피스' 영국의 대표 작가 대프니 듀 모리에의 소설과 스릴러의 거장 알프레도 히치콕의 영화 <레베카>를 모티브로 한 작품. '엘리자벳', '모차르트!', '마리 앙투아네트' 등 40여년간 최고의 작품들을 배출한 미하엘 쿤체 극작가와 실베스터 르베이 작곡가의 손꼽히는 걸작 탄탄하게 짜여진 극본과 군더더기 없는 연출 '레베카', '신이여', '하루 또 하루' 등 강력한 킬링넘버와 살아 움직이는 듯한 '맨덜리 저택' 무대 세트로 뮤지컬계 권좌를 차지한 작품",
-                'detail' => "Broken my toybox 1st Full Album 発売記念ツーマンライブ
-                        「箱庭へようこそ 〜市民、灯と、陽と（ひと、ひと、ひと）〜」
-                        会場 渋谷Spotify O-Crest
-                        開場 18:00
-                        開演 18:30
-                        出演 Broken my toybox ／ CIVILIAN",
+                'detail' => $detail,
+                'content' => $longContext,
                 'all_concert_start_date' => "2022-10-17 07:00:00",
                 'all_concert_end_date' => "2022-10-17 08:00:00",
+                'sales_volume' => 0,
+            ],
+            [
+                'created_at' => now(),
+                'updated_at' => now(),
+                'category_id' => 4,
+                'user_id' => 2,
+                'cover_image' => 'cover_image/세로긴image.jpg',
+                'title' => "HKT48",
+                'artist' => "HKT48 LIVE TOUR 2022<東京公演>",
+                'detail' => $detail,
+                'content' => $longContext,
+                'all_concert_start_date' => "2022-10-17 07:00:00",
+                'all_concert_end_date' => "2022-10-17 08:00:00",
+                'sales_volume' => 6,
+            ],
+            [
+                'created_at' => now(),
+                'updated_at' => now(),
+                'category_id' => 2,
+                'user_id' => 2,
+                'cover_image' => 'cover_image/iuconcertImage.jpg',
+                'title' => "夢のIUコンサート",
+                'artist' => "IU",
+                'detail' => $detail,
+                'content' => $longContext,
+                'all_concert_start_date' => "2022-10-17 07:00:00",
+                'all_concert_end_date' => "2022-10-17 08:00:00",
+                'sales_volume' => 3,
+            ],
+            [
+                'created_at' => now(),
+                'updated_at' => now(),
+                'category_id' => 2,
+                'user_id' => 2,
+                'cover_image' => 'cover_image/가로긴image.jpg',
+                'title' => "夢の防弾少年団コンサート",
+                'artist' => "防弾少年団",
+                'detail' => $detail,
+                'content' => $longContext,
+                'all_concert_start_date' => "2022-10-17 07:00:00",
+                'all_concert_end_date' => "2022-10-17 08:00:00",
+                'sales_volume' => 0,
+            ],
+            [
+                'created_at' => now(),
+                'updated_at' => now(),
+                'category_id' => 2,
+                'user_id' => 2,
+                'cover_image' => 'cover_image/twiceImage.jpg',
+                'title' => "夢のTWICEコンサート",
+                'artist' => "TWICE",
+                'detail' => $detail,
+                'content' => $longContext,
+                'all_concert_start_date' => "2022-10-17 07:00:00",
+                'all_concert_end_date' => "2022-10-17 08:00:00",
+                'sales_volume' => 0,
             ],
         ]);
     }
