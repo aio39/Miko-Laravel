@@ -3,9 +3,10 @@
 namespace App\Http\Resources;
 
 use App\Models\Concert;
+use App\Models\Ticket;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductResource extends JsonResource
+class RecordingResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,14 +18,14 @@ class ProductResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "concertId" => $this->concert_id,
-            "concert" =>  new ConcertResource($this->whenLoaded('concert')),
-            "price" => $this->price,
-            "name" => $this->name,
-            "detail" => $this->detail,
-            "image" => $this->image,
+            "ticketId" => $this->ticket_id,
+            "ticket" =>  new TicketResource($this->whenLoaded('ticket')),
+            "prefix" => $this->prefix,
+            "stream_id" => $this->stream_id,
+            "end" => $this->end,
+            "start" => $this->start,
+            "avl_archive" => $this->avl_archive,
             "createdAt" => $this->created_at,
-            "updatedAt" => $this->updated_at,
         ];
     }
 }

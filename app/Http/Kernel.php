@@ -46,7 +46,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            'throttle:api',
+            'throttle:600,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             CreateSessionTimeoutCookie::class, // 커스텀 쿠키 추가,
             ConvertToSnail::class

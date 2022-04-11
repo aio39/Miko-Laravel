@@ -32,7 +32,7 @@ class UserTicketSeeder extends Seeder
                 'user_id' => 1,
                 'concert_id' => 1,
                 'ticket_id' => 1,
-                'is_used' => 1,
+                'is_used' => 0,
                 'p_ranking' => 2,
                 'g_ranking' => null,
             ], [

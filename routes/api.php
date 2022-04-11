@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Support\Str;
 
 Route::get('/test',function (){ return 'Hello World';});
+Route::get('/health-check',function (){ return 'ok';});
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -41,6 +43,8 @@ Route::apiResource('/orders',\App\Http\Controllers\OrderController::class);
 Route::apiResource('/order_products',\App\Http\Controllers\OrderProductController::class);
 Route::apiResource('/carts',\App\Http\Controllers\CartController::class);
 Route::apiResource('/cart_products',\App\Http\Controllers\CartProductController::class);
+
+Route::apiResource('/recordings',\App\Http\Controllers\RecordingController::class);
 
 
 Route::prefix('/data')->group(function (){
