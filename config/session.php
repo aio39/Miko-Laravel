@@ -157,7 +157,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN'),
+    'domain' => array_key_exists('SESSION_DOMAIN', $_SERVER) ? $_SERVER['SESSION_DOMAIN'] :env('SESSION_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------
@@ -170,7 +170,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE'),
+    'secure' => array_key_exists('SESSION_SECURE_COOKIE', $_SERVER) ? $_SERVER['SESSION_SECURE_COOKIE'] :env('SESSION_SECURE_COOKIE'),
 
     /*
     |--------------------------------------------------------------------------
