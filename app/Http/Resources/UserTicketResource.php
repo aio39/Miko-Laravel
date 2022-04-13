@@ -16,6 +16,8 @@ class UserTicketResource extends JsonResource
     {
         return [
             "id" => $this->id,
+            "createdAt" => $this->created_at,
+            "updatedAt" => $this->updated_at,
             "userId" => $this->user_id,
             "user" =>  new UserResource($this->whenLoaded('user')),
             "ticketId" => $this->ticket_id,
@@ -25,7 +27,7 @@ class UserTicketResource extends JsonResource
             "isUsed" => $this->is_used,
             "pRanking" => $this->p_ranking,
             "gRanking" => $this->g_ranking,
-//            "concert" =>  new ConcertResource($this->whenLoaded('concert'))
+            //            "concert" =>  new ConcertResource($this->whenLoaded('concert'))
         ];
     }
 }
