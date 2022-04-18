@@ -76,7 +76,7 @@ class CartProductController extends Controller
      * @param  \App\Models\CartProduct  $cartProduct
      * @return \Illuminate\Http\Response
      */
-    public function show($cart_id)
+    public function show($user_id)
     {
 //        return CartProduct::where('cart_id', $cart_id)
 //            ->join('products', 'product_id', '=', 'products.id')
@@ -84,6 +84,7 @@ class CartProductController extends Controller
 //        $user_id = $request->user_id;
 //        $cart = Cart::where('user_id', $user_id);
 //        $cart_id = $cart->first()->id;
+        $cart_id=Cart::where('user_id',$user_id)->first()->id;
         return CartProduct::where('cart_id', $cart_id)
             ->with('products')
             ->get();

@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('detail');
             $table->string('image');
+            $table->string('size');
+            $table->string('color');
+            $table->unsignedInteger('stock');
 
             $table->unsignedInteger('sales_volume')->default(0);
         });
