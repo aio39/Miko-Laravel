@@ -15,7 +15,7 @@ class createCoTiAmountSuperChatPerTimesTable extends Migration
     {
         Schema::create('co_ti_amount_super_chat_per_times', function (Blueprint $table) {
             $table->id();
-            $table->timestampTz('created_at');
+            $table->timestampTz('created_at')->useCurrent()->useCurrentOnUpdate();;
             $table->bigInteger('ticket_id')->unsigned()->index();
             $table->bigInteger('concert_id')->unsigned()->index();
             $table->integer('amount');

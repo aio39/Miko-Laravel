@@ -225,6 +225,15 @@ class UserTicketSeeder extends Seeder
                 'is_used' => 0,
                 'p_ranking' => 0,
                 'g_ranking' => 0,
+            ], [
+                'created_at' => now(),
+                'updated_at' => now(),
+                'user_id' => 7,
+                'concert_id' => 1,
+                'ticket_id' => 1,
+                'is_used' => 0,
+                'p_ranking' => 0,
+                'g_ranking' => 0,
             ],
         ]);
     }

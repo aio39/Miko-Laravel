@@ -15,7 +15,7 @@ class createCoTiCurEnterUserNumsTable extends Migration
     {
         Schema::create('co_ti_cur_enter_user_nums', function (Blueprint $table) {
             $table->id();
-            $table->timestampTz('created_at');
+            $table->timestampTz('created_at')->useCurrent()->useCurrentOnUpdate();;
             $table->bigInteger('ticket_id')->unsigned()->index();
             $table->bigInteger('concert_id')->unsigned()->index();
             $table->integer('nums');
