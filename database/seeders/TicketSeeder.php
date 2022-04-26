@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 
 class TicketSeeder extends Seeder
 {
@@ -16,13 +17,10 @@ class TicketSeeder extends Seeder
      */
     public function run()
     {
-
-        $startDateM = Carbon::now()->add(1, 'minute');
-        $startDateD = Carbon::now()->add(1, 'day');
-        $endDateH = Carbon::now()->add(1, 'hour');
-        $endDateM = Carbon::now()->add(2, 'minute');
-        $endDateD = Carbon::now()->add(1, 'day');
-        $endArchiveDM = Carbon::now()->add(2, 'minute');
+        // 현재 콘서트 시작 1분 전
+        $startConcert = Carbon::now()->add(1, 'minute'); // 콘서트 끝나는 날, 판매 만료 날짜랑 같은 날
+        $endConcert = Carbon::now()->add(3, 'minute');
+        $endArchive = Carbon::now()->add(3, 'minute')->add(5, 'minute');
 
         DB::table('tickets')->insert([
             [
@@ -46,13 +44,13 @@ class TicketSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'concert_id' => 1,
-                'price' => 100,
+                'price' => 120,
                 'running_time' => 180,
                 'sale_start_date' => '2021-06-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2023-12-17 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-01-17 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-12-17 10:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-12-17 00:00:00', // 다시보기 기간
+                'sale_end_date' => $endConcert, // 판매종료 날짜
+                'concert_start_date' => $startConcert, // 콘서트시작 날짜
+                'concert_end_date' => $endConcert, // 콘서트종료 날짜
+                'archive_end_time' => $endArchive, // 다시보기 기간
                 'channel_arn' => env('channel_arn'),
                 'playback_url' => env('playback_url'),
                 'stream_key_arn' => env('stream_key_arn'),
@@ -62,346 +60,75 @@ class TicketSeeder extends Seeder
             ],
         ]);
 
-        DB::table('tickets')->insert([
-            [
+        $concertsIDs = DB::table('concerts')->pluck('id');
+
+        // 판매 예정
+        $planSaleStartDate = Carbon::now()->add(1, 'month'); // 판매 시작
+        $planSaleEndDate = Carbon::now()->add(1, 'month')->add(1, 'year'); // 판매 끝나는 날, 판매 시작일 기준 1년 후까지
+        $planStartDate = Carbon::now()->add(1, 'month')->add(6, 'month'); // 콘서트 시작, 판매 시작일 기준 6개월 후
+        $planEndDate = Carbon::now()->add(1, 'month')->add(1, 'year'); // 콘서트 끝나는 날, 판매 만료 날짜랑 같은 날
+        $planArchiveEndDate = Carbon::now()->add(1, 'month')->add(1, 'year')->add(1, 'year'); // 다시보기, 콘서트 끝나는 날 기준 1년 후.
+
+        for ($i = 0; $i < 10; $i++) {
+            DB::table('tickets')->insert([
                 'created_at' => now(),
                 'updated_at' => now(),
-                'concert_id' => 2,
-                'price' => 13000,
-                'running_time' => 180,
-                'sale_start_date' => '2022-03-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => $endDateH, // 판매종료 날짜
-                'concert_start_date' => $startDateM, // 콘서트시작 날짜
-                'concert_end_date' => $endDateH, // 콘서트종료 날짜
-                'archive_end_time' => '2023-12-18 00:00:00', // 다시보기 기간
-                'sales_volume' => 1,
-            ], [
+                'concert_id' => $concertsIDs->random(),
+                'price' => mt_rand(1, 200) * 100,
+                'running_time' => mt_rand(1, 20) * 10,
+                'sale_start_date' => $planSaleStartDate, // 판매시작 날짜
+                'sale_end_date' => $planSaleEndDate, // 판매종료 날짜
+                'concert_start_date' => $planStartDate, // 콘서트시작 날짜
+                'concert_end_date' => $planEndDate, // 콘서트종료 날짜
+                'archive_end_time' => $planArchiveEndDate, // 다시보기 기간
+                'sales_volume' => mt_rand(0, 27),
+            ]);
+        }
+
+        // 판매 중
+        $onSaleStartDate = Carbon::now()->sub(3, 'month'); // 판매 시작
+        $onSaleEndDate = Carbon::now()->sub(3, 'month')->add(1, 'year'); // 판매 끝나는 날, 판매 시작일 기준 1년 후까지
+        $onStartDate = Carbon::now()->sub(3, 'month')->add(6, 'month'); // 콘서트 시작, 판매 시작일 기준 6개월 후
+        $onEndDate = Carbon::now()->sub(3, 'month')->add(1, 'year'); // 콘서트 끝나는 날, 판매 만료 날짜랑 같은 날
+        $onArchiveEndDate = Carbon::now()->sub(3, 'month')->add(1, 'year')->add(1, 'year'); // 다시보기, 콘서트 끝나는 날 기준 1년 후.
+
+        for ($i = 0; $i < 20; $i++) {
+            DB::table('tickets')->insert([
                 'created_at' => now(),
                 'updated_at' => now(),
-                'concert_id' => 2,
-                'price' => 13000,
-                'running_time' => 180,
-                'sale_start_date' => '2022-01-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' =>  $endDateM, // 판매종료 날짜
-                'concert_start_date' => $startDateM, // 콘서트시작 날짜
-                'concert_end_date' => $endDateM, // 콘서트종료 날짜
-                'archive_end_time' => '2023-12-19 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
+                'concert_id' => $concertsIDs->random(),
+                'price' => mt_rand(1, 200) * 100,
+                'running_time' => mt_rand(1, 20) * 10,
+                'sale_start_date' => $onSaleStartDate, // 판매시작 날짜
+                'sale_end_date' => $onSaleEndDate, // 판매종료 날짜
+                'concert_start_date' => $onStartDate, // 콘서트시작 날짜
+                'concert_end_date' => $onEndDate, // 콘서트종료 날짜
+                'archive_end_time' => $onArchiveEndDate, // 다시보기 기간
+                'sales_volume' => mt_rand(0, 27),
+            ]);
+        }
+
+        // 판매 지남
+        $outSaleStartDate = Carbon::now()->sub(1, 'year')->add(1, 'month'); // 판매 시작
+        $outSaleEndDate = Carbon::now()->sub(1, 'year')->add(1, 'month')->add(1, 'year'); // 판매 끝나는 날, 판매 시작일 기준 1년 후까지
+        $outStartDate = Carbon::now()->sub(1, 'year')->add(1, 'month')->add(6, 'month'); // 콘서트 시작, 판매 시작일 기준 6개월 후
+        $outEndDate = Carbon::now()->sub(1, 'year')->add(1, 'month')->add(1, 'year'); // 콘서트 끝나는 날, 판매 만료 날짜랑 같은 날
+        $outArchiveEndDate = Carbon::now()->sub(1, 'year')->add(1, 'month')->add(1, 'year')->add(1, 'year'); // 다시보기, 콘서트 끝나는 날 기준 1년 후.
+
+        for ($i = 0; $i < 10; $i++) {
+            DB::table('tickets')->insert([
                 'created_at' => now(),
                 'updated_at' => now(),
-                'concert_id' => 3,
-                'price' => 13000,
-                'running_time' => 180,
-                'sale_start_date' => '2022-06-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-12-20 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-12-20 13:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-12-20 16:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-12-20 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 3,
-                'price' => 5800,
-                'running_time' => 120,
-                'sale_start_date' => '2021-06-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-04-17 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-04-17 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-04-17 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-04-17 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 3,
-                'price' => 5800,
-                'running_time' => 120,
-                'sale_start_date' => '2021-06-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-04-19 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-04-19 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-04-19 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-04-19 00:00:00', // 다시보기 기간
-                'sales_volume' => 1,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 3,
-                'price' => 5800,
-                'running_time' => 120,
-                'sale_start_date' => '2021-06-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-04-22 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-04-22 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-04-22 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-04-22 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 4,
-                'price' => 4300,
-                'running_time' => 90,
-                'sale_start_date' => '2022-01-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-06-17 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-06-17 09:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-06-17 10:30:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-06-17 00:00:00', // 다시보기 기간
-                'sales_volume' => 1,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 4,
-                'price' => 4300,
-                'running_time' => 90,
-                'sale_start_date' => '2022-01-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-06-18 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-06-18 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-06-18 08:30:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-06-18 00:00:00', // 다시보기 기간
-                'sales_volume' => 5,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 5,
-                'price' => 5900,
-                'running_time' => 120,
-                'sale_start_date' => '2021-09-07 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-03-07 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-03-07 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-03-07 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-03-07 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 5,
-                'price' => 5900,
-                'running_time' => 120,
-                'sale_start_date' => '2021-09-07 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-03-08 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-03-08 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-03-08 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-03-08 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 5,
-                'price' => 5900,
-                'running_time' => 120,
-                'sale_start_date' => '2021-09-07 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-03-09 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-03-09 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-03-09 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-03-09 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 6,
-                'price' => 5000,
-                'running_time' => 120,
-                'sale_start_date' => '2021-09-07 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-02-17 07:00:00', // 판매종료 날짜
-                'concert_start_date' => ' 2022-02-17 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-02-17 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-02-17 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 6,
-                'price' => 5000,
-                'running_time' => 120,
-                'sale_start_date' => '2021-09-07 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-03-17 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-03-17 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-03-17 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-03-17 00:00:00', // 다시보기 기간
-                'sales_volume' => 1,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 6,
-                'price' => 5000,
-                'running_time' => 120,
-                'sale_start_date' => '2021-09-07 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-04-17 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-04-17 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-04-17 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-04-17 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 6,
-                'price' => 5000,
-                'running_time' => 120,
-                'sale_start_date' => '2021-09-07 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-05-19 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-05-19 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-05-19 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-05-19 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 7,
-                'price' => 5000,
-                'running_time' => 120,
-                'sale_start_date' => '2022-01-07 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-07-17 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-07-17 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-07-17 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-07-17 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 8,
-                'price' => 3800,
-                'running_time' => 60,
-                'sale_start_date' => '2022-01-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-10-17 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-10-17 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-10-17 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-10-17 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ],
-            [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 10,
-                'price' => 13000,
-                'running_time' => 180,
-                'sale_start_date' => '2022-03-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => $endDateM, // 판매종료 날짜
-                'concert_start_date' => $startDateM, // 콘서트시작 날짜
-                'concert_end_date' => $endDateM, // 콘서트종료 날짜
-                'archive_end_time' => $endDateM, // 다시보기 기간
-                'sales_volume' => 6,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 10,
-                'price' => 13000,
-                'running_time' => 180,
-                'sale_start_date' => '2022-01-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' =>  $endDateM, // 판매종료 날짜
-                'concert_start_date' => $startDateM, // 콘서트시작 날짜
-                'concert_end_date' => $endDateM, // 콘서트종료 날짜
-                'archive_end_time' => $endDateM, // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 11,
-                'price' => 13000,
-                'running_time' => 180,
-                'sale_start_date' => '2022-03-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' => $endDateH, // 판매종료 날짜
-                'concert_start_date' => $startDateM, // 콘서트시작 날짜
-                'concert_end_date' => $endDateM, // 콘서트종료 날짜
-                'archive_end_time' => $endArchiveDM, // 다시보기 기간
-                'sales_volume' => 2,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 11,
-                'price' => 13000,
-                'running_time' => 180,
-                'sale_start_date' => '2022-01-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' =>  $endDateM, // 판매종료 날짜
-                'concert_start_date' => $startDateM, // 콘서트시작 날짜
-                'concert_end_date' => $endDateM, // 콘서트종료 날짜
-                'archive_end_time' => '2023-12-19 00:00:00', // 다시보기 기간
-                'sales_volume' => 1,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 12,
-                'price' => 13000,
-                'running_time' => 180,
-                'sale_start_date' => '2022-01-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' =>  $endDateM, // 판매종료 날짜
-                'concert_start_date' => $startDateM, // 콘서트시작 날짜
-                'concert_end_date' => $endDateM, // 콘서트종료 날짜
-                'archive_end_time' => '2023-12-19 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 13,
-                'price' => 13000,
-                'running_time' => 180,
-                'sale_start_date' => '2022-01-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' =>  $endDateM, // 판매종료 날짜
-                'concert_start_date' => $startDateM, // 콘서트시작 날짜
-                'concert_end_date' => $endDateM, // 콘서트종료 날짜
-                'archive_end_time' => '2023-12-19 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 13,
-                'price' => 5000,
-                'running_time' => 120,
-                'sale_start_date' => '2022-01-07 00:00:00', // 판매시작 날짜
-                'sale_end_date' => '2022-07-17 07:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-07-17 07:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-07-17 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-07-17 00:00:00', // 다시보기 기간
-                'sales_volume' => 0,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 14,
-                'price' => 13000,
-                'running_time' => 180,
-                'sale_start_date' => '2022-01-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' =>  '2022-07-17 09:00:00', // 판매종료 날짜
-                'concert_start_date' => '2022-07-10 09:00:00', // 콘서트시작 날짜
-                'concert_end_date' => '2022-07-17 09:00:00', // 콘서트종료 날짜
-                'archive_end_time' => '2023-12-19 00:00:00', // 다시보기 기간
-                'sales_volume' => 1,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 15,
-                'price' => 13000,
-                'running_time' => 180,
-                'sale_start_date' => '2022-01-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' =>  $endDateD, // 판매종료 날짜
-                'concert_start_date' => $startDateD, // 콘서트시작 날짜
-                'concert_end_date' => $endDateD, // 콘서트종료 날짜
-                'archive_end_time' => '2023-12-19 00:00:00', // 다시보기 기간
-                'sales_volume' => 1,
-            ], [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 16,
-                'price' => 13000,
-                'running_time' => 180,
-                'sale_start_date' => '2022-01-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' =>  $endDateD, // 판매종료 날짜
-                'concert_start_date' => $startDateD, // 콘서트시작 날짜
-                'concert_end_date' => $endDateD, // 콘서트종료 날짜
-                'archive_end_time' => '2023-12-19 00:00:00', // 다시보기 기간
-                'sales_volume' => 1,
-            ],
-            [
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => 17,
-                'price' => 13000,
-                'running_time' => 180,
-                'sale_start_date' => '2022-01-17 00:00:00', // 판매시작 날짜
-                'sale_end_date' =>  $endDateD, // 판매종료 날짜
-                'concert_start_date' => $startDateD, // 콘서트시작 날짜
-                'concert_end_date' => $endDateD, // 콘서트종료 날짜
-                'archive_end_time' => '2023-12-19 00:00:00', // 다시보기 기간
-                'sales_volume' => 1,
-            ],
-        ]);
+                'concert_id' => $concertsIDs->random(),
+                'price' => mt_rand(1, 200) * 100,
+                'running_time' => mt_rand(1, 20) * 10,
+                'sale_start_date' => $outSaleStartDate, // 판매시작 날짜
+                'sale_end_date' => $outSaleEndDate, // 판매종료 날짜
+                'concert_start_date' => $outStartDate, // 콘서트시작 날짜
+                'concert_end_date' => $outEndDate, // 콘서트종료 날짜
+                'archive_end_time' => $outArchiveEndDate, // 다시보기 기간
+                'sales_volume' => mt_rand(0, 27),
+            ]);
+        }
     }
 }

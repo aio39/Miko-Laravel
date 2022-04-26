@@ -15,78 +15,27 @@ class CoinHistorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('coin_histories')->insert([
-            [
+
+        $usersIDs = DB::table('users')->pluck('id');
+        // 0  충전  / 1 티켓 구입 /  2 슈퍼챗 /  3 아이템  사용 / 4 굿즈 구입  / 5 티켓 판매 / 6 굿즈 판매  / 7 슈퍼챗을 받음 / 8 아이템을 받음 .
+        // 일반 유저 소비.
+        for ($i = 0; $i < 10; $i++) {
+            DB::table('coin_histories')->insert([
+                'created_at' => now(),
+                'user_id' => $usersIDs->random(),
+                'type' => mt_rand(0, 4),
+                'variation' => mt_rand(1, 150) * 100,
+            ]);
+        }
+
+        // 스트리머
+        for ($i = 0; $i < 10; $i++) {
+            DB::table('coin_histories')->insert([
                 'created_at' => now(),
                 'user_id' => 1,
-                'type' => 0,
-                'variation' => 5000,
-            ],
-            [
-                'created_at' => now(),
-                'user_id' => 1,
-                'type' => 0,
-                'variation' => 500,
-            ],
-            [
-                'created_at' => now(),
-                'user_id' => 1,
-                'type' => 0,
-                'variation' => 5000,
-            ],
-            [
-                'created_at' => now(),
-                'user_id' => 1,
-                'type' => 1,
-                'variation' => 500,
-            ], [
-                'created_at' => now(),
-                'user_id' => 1,
-                'type' => 1,
-                'variation' => 1000,
-            ],
-            [
-                'created_at' => now(),
-                'user_id' => 1,
-                'type' => 0,
-                'variation' => 2000,
-            ],
-            [
-                'created_at' => now(),
-                'user_id' => 1,
-                'type' => 2,
-                'variation' => 3000,
-            ],
-            [
-                'created_at' => now(),
-                'user_id' => 1,
-                'type' => 0,
-                'variation' => 2000,
-            ],
-            [
-                'created_at' => now(),
-                'user_id' => 1,
-                'type' => 0,
-                'variation' => 1000,
-            ],
-            [
-                'created_at' => now(),
-                'user_id' => 1,
-                'type' => 3,
-                'variation' => 2200,
-            ],
-            [
-                'created_at' => now(),
-                'user_id' => 1,
-                'type' => 4,
-                'variation' => 200,
-            ],
-            [
-                'created_at' => now(),
-                'user_id' => 2,
-                'type' => 0,
-                'variation' => 300,
-            ],
-        ]);
+                'type' => mt_rand(5, 8),
+                'variation' => mt_rand(1, 150) * 100,
+            ]);
+        }
     }
 }

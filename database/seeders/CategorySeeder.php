@@ -14,43 +14,26 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-         // 상위 카테고리
-        \DB::table('categories')->insert([
-            [
-                'name'=> 'J-POP',
-                'created_at'=> now(),
-                'updated_at'=> now(),
-            ],[
-                'name'=> 'K-POP',
-                'created_at'=> now(),
-                'updated_at'=> now(),
-            ],[
-                'name'=> '애니메이션',
-                'created_at'=> now(),
-                'updated_at'=> now(),
-            ],[
-                'name'=> '재즈/소울',
-                'created_at'=> now(),
-                'updated_at'=> now(),
-            ],[
-                'name'=> '밴드',
-                'created_at'=> now(),
-                'updated_at'=> now(),
-            ],[
-                'name'=> '발라드',
-                'created_at'=> now(),
-                'updated_at'=> now(),
-            ],[
-                'name'=> '음악',
-                'created_at'=> now(),
-                'updated_at'=> now(),
-            ],[
-                'name'=> '연극',
-                'created_at'=> now(),
-                'updated_at'=> now(),
-            ]
-        ]);
+        // 상위 카테고리
+        $cate_list = [
+            'J-POP',
+            'K-POP',
+            '애니메이션',
+            '재즈/소울',
+            '밴드',
+            '발라드',
+            '음악',
+            '연극',
+        ];
 
+        $createCate = function ($concertData) {
+            return [
+                'name' => 'J-POP',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        };
 
+        DB::table('categories')->insert(array_map($createCate, $cate_list));
     }
 }
