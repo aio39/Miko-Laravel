@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -24,11 +25,23 @@ class UserController extends Controller
         return $user
             ? response()->json($data, 201)
             : response()->json([], 500);
-
     }
 
     public function getCoin(Request $request)
     {
-        return Auth::check() ?  response()->json(["data"=>Auth::user()->coin]) : response()->json('please login', 404);
+        return Auth::check() ?  response()->json(["data" => Auth::user()->coin]) : response()->json('please login', 404);
+    }
+
+    public function update(Request $request, User $user)
+    {
+
+        if ($request->file('avatar')) {
+            $path = $request->file('avatar')->store('user_avatar', 's3'); // s3에 image 저장.
+        }
+
+        $input = array_merge($request->except('avatar'), ['avatar' => $path]);
+        $user->update($input);
+
+        return  new UserResource($user);
     }
 }
