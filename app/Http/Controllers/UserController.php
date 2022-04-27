@@ -15,6 +15,16 @@ class UserController extends Controller
         return Auth::check() ? response()->json(Auth::user()) : response()->json('please login', 404);
     }
 
+    public function show(Request $request, $id)
+    {
+
+        $query = User::query();
+
+        $query = applyDefaultFindById($request, $query);
+
+        return (new UserResource($query->findOrFail($id)));
+    }
+
     public function store(Request $request)
     {
         $data = $request->all();
