@@ -26,9 +26,9 @@ class CategorySeeder extends Seeder
             '연극',
         ];
 
-        $createCate = function ($concertData) {
+        $createCate = function ($category) {
             return [
-                'name' => 'J-POP',
+                'name' => $category,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
