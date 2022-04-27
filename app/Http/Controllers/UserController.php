@@ -35,10 +35,10 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
 
+        $path = $user->avatar;
         if ($request->file('avatar')) {
             $path = $request->file('avatar')->store('user_avatar', 's3'); // s3에 image 저장.
         }
-
         $input = array_merge($request->except('avatar'), ['avatar' => $path]);
         $user->update($input);
 
