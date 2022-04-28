@@ -33,4 +33,8 @@ class Concert extends Model
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
 }

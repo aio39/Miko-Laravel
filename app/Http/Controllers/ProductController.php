@@ -61,6 +61,18 @@ class ProductController extends Controller
         $query = applyDefaultFindById($request, $query);
 
         return (new ProductResource($query->findOrFail($id)));
+//        $product = Product::find($id)->with('concerts')->get();
+//        $product = Product::find($id)->get();
+//        $concertTitle = Product::find($id)->with('concert')->get();
+//
+//        $array = array();
+//        for($i=0; $i < count($concertTitle); $i++){
+//            array_push($array, $concertTitle[$i]['concert']->title);
+//            $product[$i]['concert_title'] = $array[$i];
+//    }
+//        return $product;
+//        return $concertTitle['concert']->title;
+
     }
 
 
