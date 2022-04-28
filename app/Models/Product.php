@@ -15,7 +15,7 @@ class Product extends Model
 
     public function concert()
     {
-        return $this->belongsTo(Ticket::class);
+        return $this->belongsTo(Concert::class);
     }
 
     public function orderProducts()
