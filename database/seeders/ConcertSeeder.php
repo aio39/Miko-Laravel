@@ -47,6 +47,12 @@ class ConcertSeeder extends Seeder
             ['title' => '夢のAILEEコンサート', 'artist' => 'AILEE', 'cover_image' => 'cover_image/ailee.jpg'],
             ['title' => '夢のBOAコンサート', 'artist' => 'BOA', 'cover_image' => 'cover_image/boa.jpg'],
             ['title' => '夢のWINNERコンサート', 'artist' => 'WINNER', 'cover_image' => 'cover_image/winner.jpg'],
+            ['title' => 'クロフェス', 'artist' => 'クロフェス2022～今年は野外フェスで盛り上がるしん！！～', 'cover_image' => 'cover_image/f375x375.jpeg'],
+            ['title' => 'ゲスの極み乙女のコンサート', 'artist' => 'ゲスの極み乙女', 'cover_image' => 'cover_image/japan1.png.png'],
+            ['title' => 'L’Arc～en～CielのLIVE', 'artist' => 'L’Arc～en～Ciel', 'cover_image' => 'cover_image/japan2.jpg'],
+            ['title' => '夢のNCT127コンサート', 'artist' => 'NCT 127', 'cover_image' => 'cover_image/nct.jpg'],
+            ['title' => 'DINO-A-LIVE PREMIUM TIME DIVER 夏休みスペシャル', 'artist' => 'DINO', 'cover_image' => 'cover_image/japan3.jpg'],
+            ['title' => '夢のAPINKコンサート', 'artist' => 'APINK', 'cover_image' => 'cover_image/apink.jpg'],
         ];
 
         $createConcert = function ($concertData) {

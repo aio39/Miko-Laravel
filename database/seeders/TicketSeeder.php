@@ -56,10 +56,11 @@ class TicketSeeder extends Seeder
                 'stream_key_arn' => env('stream_key_arn'),
                 'stream_key_value' => env('stream_key_value'),
                 'ingest_endpoint' => env('ingest_endpoint'),
-                'sales_volume' => 0,
+                'sales_volume' => 3,
             ],
         ]);
 
+        $ticketData = [];
         $concertsIDs = DB::table('concerts')->pluck('id');
 
         // 판매 예정
@@ -69,11 +70,11 @@ class TicketSeeder extends Seeder
         $planEndDate = Carbon::now()->add(1, 'month')->add(1, 'year'); // 콘서트 끝나는 날, 판매 만료 날짜랑 같은 날
         $planArchiveEndDate = Carbon::now()->add(1, 'month')->add(1, 'year')->add(1, 'year'); // 다시보기, 콘서트 끝나는 날 기준 1년 후.
 
-        for ($i = 0; $i < 10; $i++) {
-            DB::table('tickets')->insert([
+        for ($i = 0; $i < $concertsIDs->count(); $i++) {
+            $planTicket = [
                 'created_at' => now(),
                 'updated_at' => now(),
-                'concert_id' => $concertsIDs->random(),
+                'concert_id' => $concertsIDs[$i],
                 'price' => mt_rand(1, 200) * 100,
                 'running_time' => mt_rand(1, 20) * 10,
                 'sale_start_date' => $planSaleStartDate, // 판매시작 날짜
@@ -81,9 +82,10 @@ class TicketSeeder extends Seeder
                 'concert_start_date' => $planStartDate, // 콘서트시작 날짜
                 'concert_end_date' => $planEndDate, // 콘서트종료 날짜
                 'archive_end_time' => $planArchiveEndDate, // 다시보기 기간
-                'sales_volume' => mt_rand(0, 27),
-            ]);
-        }
+                'sales_volume' => mt_rand(0, 100),
+            ];
+            array_push($ticketData, $planTicket);
+        };
 
         // 판매 중
         $onSaleStartDate = Carbon::now()->sub(3, 'month'); // 판매 시작
@@ -92,21 +94,24 @@ class TicketSeeder extends Seeder
         $onEndDate = Carbon::now()->sub(3, 'month')->add(1, 'year'); // 콘서트 끝나는 날, 판매 만료 날짜랑 같은 날
         $onArchiveEndDate = Carbon::now()->sub(3, 'month')->add(1, 'year')->add(1, 'year'); // 다시보기, 콘서트 끝나는 날 기준 1년 후.
 
-        for ($i = 0; $i < 20; $i++) {
-            DB::table('tickets')->insert([
-                'created_at' => now(),
-                'updated_at' => now(),
-                'concert_id' => $concertsIDs->random(),
-                'price' => mt_rand(1, 200) * 100,
-                'running_time' => mt_rand(1, 20) * 10,
-                'sale_start_date' => $onSaleStartDate, // 판매시작 날짜
-                'sale_end_date' => $onSaleEndDate, // 판매종료 날짜
-                'concert_start_date' => $onStartDate, // 콘서트시작 날짜
-                'concert_end_date' => $onEndDate, // 콘서트종료 날짜
-                'archive_end_time' => $onArchiveEndDate, // 다시보기 기간
-                'sales_volume' => mt_rand(0, 27),
-            ]);
-        }
+        for ($i = 0; $i < 2; $i++) {
+            for ($i = 0; $i < $concertsIDs->count(); $i++) {
+                $onSaleTicket = [
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                    'concert_id' => $concertsIDs->random(),
+                    'price' => mt_rand(1, 200) * 100,
+                    'running_time' => mt_rand(1, 20) * 10,
+                    'sale_start_date' => $onSaleStartDate, // 판매시작 날짜
+                    'sale_end_date' => $onSaleEndDate, // 판매종료 날짜
+                    'concert_start_date' => $onStartDate, // 콘서트시작 날짜
+                    'concert_end_date' => $onEndDate, // 콘서트종료 날짜
+                    'archive_end_time' => $onArchiveEndDate, // 다시보기 기간
+                    'sales_volume' => mt_rand(0, 100),
+                ];
+                array_push($ticketData, $onSaleTicket);
+            };
+        };
 
         // 판매 지남
         $outSaleStartDate = Carbon::now()->sub(1, 'year')->add(1, 'month'); // 판매 시작
@@ -115,8 +120,8 @@ class TicketSeeder extends Seeder
         $outEndDate = Carbon::now()->sub(1, 'year')->add(1, 'month')->add(1, 'year'); // 콘서트 끝나는 날, 판매 만료 날짜랑 같은 날
         $outArchiveEndDate = Carbon::now()->sub(1, 'year')->add(1, 'month')->add(1, 'year')->add(1, 'year'); // 다시보기, 콘서트 끝나는 날 기준 1년 후.
 
-        for ($i = 0; $i < 10; $i++) {
-            DB::table('tickets')->insert([
+        for ($i = 0; $i < $concertsIDs->count(); $i++) {
+            $outSaleTicket = [
                 'created_at' => now(),
                 'updated_at' => now(),
                 'concert_id' => $concertsIDs->random(),
@@ -127,8 +132,12 @@ class TicketSeeder extends Seeder
                 'concert_start_date' => $outStartDate, // 콘서트시작 날짜
                 'concert_end_date' => $outEndDate, // 콘서트종료 날짜
                 'archive_end_time' => $outArchiveEndDate, // 다시보기 기간
-                'sales_volume' => mt_rand(0, 27),
-            ]);
-        }
+                'sales_volume' => mt_rand(0, 100),
+            ];
+            array_push($ticketData, $outSaleTicket);
+        };
+
+
+        DB::table('tickets')->insert($ticketData);
     }
 }
