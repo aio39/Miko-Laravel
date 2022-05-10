@@ -26,6 +26,8 @@ class ProductResource extends JsonResource
             "stock" => $this->stock,
             "color" => $this->color,
             "size" => $this->size,
+            "orderLimit" => $this->order_limit,
+            "salesVolume" => $this->sales_volume,
             "createdAt" => $this->created_at,
             "updatedAt" => $this->updated_at,
         ];
