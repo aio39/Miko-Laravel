@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('size');
             $table->string('color');
             $table->unsignedInteger('stock');
-
+            $table->unsignedInteger('order_limit')->nullable();
             $table->unsignedInteger('sales_volume')->default(0);
         });
     }

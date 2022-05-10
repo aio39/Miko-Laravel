@@ -134,9 +134,7 @@ class OrderController extends Controller
         $concertId = array();
 
 //        dd($order[9]['products'][0]->concert_id);
-        dd($order);
         for($i = 0; $i < count($order); $i++){
-            echo json_encode($concertId);
             array_push($concertId, $order[$i]['products'][0]->concert_id);
         }
 
@@ -184,8 +182,8 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($orderId)
     {
-        //
+        return Order::destroy($orderId);
     }
 }
