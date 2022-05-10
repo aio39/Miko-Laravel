@@ -18,12 +18,11 @@ class CategorySeeder extends Seeder
         $cate_list = [
             'J-POP',
             'K-POP',
-            '애니메이션',
-            '재즈/소울',
-            '밴드',
-            '발라드',
-            '음악',
-            '연극',
+            'アニメ',
+            'ジャズ',
+            'バンド',
+            'バラード',
+            '演劇',
         ];
 
         $createCate = function ($category) {
