@@ -51,8 +51,17 @@ class ConcertSeeder extends Seeder
             ['title' => 'ゲスの極み乙女のコンサート', 'artist' => 'ゲスの極み乙女', 'cover_image' => 'cover_image/japan1.png.png'],
             ['title' => 'L’Arc～en～CielのLIVE', 'artist' => 'L’Arc～en～Ciel', 'cover_image' => 'cover_image/japan2.jpg'],
             ['title' => '夢のNCT127コンサート', 'artist' => 'NCT 127', 'cover_image' => 'cover_image/nct.jpg'],
-            ['title' => 'DINO-A-LIVE PREMIUM TIME DIVER 夏休みスペシャル', 'artist' => 'DINO', 'cover_image' => 'cover_image/japan3.jpg'],
+            ['title' => 'DINO-A-LIVE', 'artist' => 'DINO', 'cover_image' => 'cover_image/japan3.jpg'],
             ['title' => '夢のAPINKコンサート', 'artist' => 'APINK', 'cover_image' => 'cover_image/apink.jpg'],
+            ['title' => '工藤遥', 'artist' => '工藤遥「今日休みなんで、ちょっと喋ってみます。」vol.9', 'cover_image' => 'cover_image/工藤遥.jpeg'],
+            ['title' => 'JCIF', 'artist' => '【BLOSSOMステージ】JCIF2022', 'cover_image' => 'cover_image/JCIF.jpeg'],
+            ['title' => 'Mr.Children', 'artist' => 'Mr.Children Tour 半世紀へのエントランス', 'cover_image' => 'cover_image/Mr.Children.jpeg'],
+            ['title' => '2022クォン·ウンビの最初のコンサート「SecretDoors」', 'artist' => 'クォン·ウンビ', 'cover_image' => 'cover_image/Secret Doors.gif'],
+            ['title' => 'Jan Rishitsky Piano Recital', 'artist' => 'Jan Rishitsky', 'cover_image' => 'cover_image/piano.gif'],
+            ['title' => 'YG FAMILY WORLD TOUR', 'artist' => 'YG', 'cover_image' => 'cover_image/yg.jpg'],
+            ['title' => 'あいみょん Concert', 'artist' => 'あいみょん', 'cover_image' => 'cover_image/imyon.jpg'],
+
+
         ];
 
         $createConcert = function ($concertData) {
