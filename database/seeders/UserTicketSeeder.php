@@ -23,9 +23,9 @@ class UserTicketSeeder extends Seeder
 
         $userTicketData = [];
 
+
         for ($i = 0; $i < $usersIDs->count(); $i++) {
             $concertID = Ticket::find(1)->concert->id;
-
             $userTicket1 = [
                 'created_at' => $now,
                 'updated_at' => $now,
@@ -38,6 +38,23 @@ class UserTicketSeeder extends Seeder
             ];
             array_push($userTicketData, $userTicket1);
         };
+
+        for ($i = 0; $i < $usersIDs->count(); $i++) {
+            $concertID = Ticket::find(2)->concert->id;
+            $userTicket1 = [
+                'created_at' => $now,
+                'updated_at' => $now,
+                'user_id' => $usersIDs[$i],
+                'concert_id' => $concertID,
+                'ticket_id' => 2,
+                'is_used' => 0,
+                'p_ranking' => null,
+                'g_ranking' => null,
+            ];
+            array_push($userTicketData, $userTicket1);
+        };
+
+
 
         for ($i = 0; $i < 10; $i++) {
             $ticketID = $ticketsIDs->random();

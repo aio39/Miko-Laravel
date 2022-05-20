@@ -18,9 +18,9 @@ class TicketSeeder extends Seeder
     public function run()
     {
         // 현재 콘서트 시작 1분 전
-        $startConcert = Carbon::now()->add(1, 'minute'); // 콘서트 끝나는 날, 판매 만료 날짜랑 같은 날
-        $endConcert = Carbon::now()->add(3, 'minute');
-        $endArchive = Carbon::now()->add(3, 'minute')->add(5, 'minute');
+        $startConcert = Carbon::now()->add(30, 'minute'); // 콘서트 끝나는 날, 판매 만료 날짜랑 같은 날
+        $endConcert = Carbon::now()->add(40, 'minute');
+        $endArchive = Carbon::now()->add(40, 'minute')->add(5, 'minute');
 
         DB::table('tickets')->insert([
             [
